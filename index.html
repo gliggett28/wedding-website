@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grace & Tyler | Wedding 2027</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage-dark: #5C7C5C;
+            --sage: #7D9D7D;
+            --sage-light: #A8C5A8;
+            --sage-pale: #E8F0E8;
+            --cream: #FDFDF9;
+            --text-dark: #3A3A3A;
+            --text-light: #6B6B6B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            color: var(--text-dark);
+            background-color: var(--cream);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            background: rgba(253, 253, 249, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--sage-pale);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--sage-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--sage-pale) 0%, var(--cream) 100%);
+        }
+
+        .hero-date {
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--sage-dark);
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 300;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-ampersand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-style: italic;
+            color: var(--sage);
+            margin: 0.5rem 0;
+        }
+
+        .hero-location {
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            margin-top: 3rem;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(180deg, var(--sage) 0%, transparent 100%);
+        }
+
+        /* Sections */
+        section {
+            padding: 8rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--sage);
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+        }
+
+        /* Our Story */
+        .story-content {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto;
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+
+        .story-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Event Details */
+        .events {
+            background-color: var(--sage-pale);
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .event-card {
+            background: var(--cream);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-radius: 2px;
+        }
+
+        .event-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--sage-dark);
+        }
+
+        .event-card p {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .event-time {
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            color: var(--sage);
+            margin-top: 1rem;
+        }
+
+        /* Travel */
+        .travel-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .travel-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--sage-dark);
+        }
+
+        .travel-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .travel-card a {
+            color: var(--sage-dark);
+            text-decoration: none;
+            border-bottom: 1px solid var(--sage-light);
+            transition: border-color 0.3s ease;
+        }
+
+        .travel-card a:hover {
+            border-color: var(--sage-dark);
+        }
+
+        /* Registry */
+        .registry {
+            background-color: var(--sage-pale);
+            text-align: center;
+        }
+
+        .registry-message {
+            max-width: 550px;
+            margin: 0 auto 3rem;
+            color: var(--text-light);
+        }
+
+        .registry-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .registry-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--cream);
+            color: var(--sage-dark);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 1px solid var(--sage-light);
+            transition: all 0.3s ease;
+        }
+
+        .registry-btn:hover {
+            background: var(--sage-dark);
+            color: var(--cream);
+            border-color: var(--sage-dark);
+        }
+
+        /* RSVP */
+        .rsvp {
+            text-align: center;
+        }
+
+        .rsvp-message {
+            max-width: 500px;
+            margin: 0 auto 3rem;
+            color: var(--text-light);
+        }
+
+        .rsvp-form {
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--sage-light);
+            background: var(--cream);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--sage-dark);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--sage-dark);
+            color: var(--cream);
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--sage);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--sage-dark);
+            color: var(--sage-pale);
+        }
+
+        footer h2 {
+            font-size: 2rem;
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+                gap: 1.5rem;
+                flex-wrap: wrap;
+            }
+
+            nav a {
+                font-size: 0.7rem;
+            }
+
+            section {
+                padding: 5rem 1.5rem;
+            }
+
+            .events-grid {
+                gap: 2rem;
+            }
+
+            .event-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#story">Our Story</a>
+        <a href="#events">Events</a>
+        <a href="#travel">Travel</a>
+        <a href="#registry">Registry</a>
+        <a href="#rsvp">RSVP</a>
+    </nav>
+
+    <section id="home" class="hero">
+        <p class="hero-date">June 14, 2027</p>
+        <h1>Grace</h1>
+        <p class="hero-ampersand">&</p>
+        <h1>Tyler</h1>
+        <p class="hero-location">Charleston, South Carolina</p>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <section id="story">
+        <p class="section-subtitle">Our Story</p>
+        <h2>How We Met</h2>
+        <div class="story-content">
+            <p>
+                We first crossed paths in the fall of 2021, though neither of us could have predicted
+                where that chance meeting would lead. What started as a simple conversation turned into
+                hours of talking, and those hours turned into a lifetime of memories waiting to be made.
+            </p>
+            <p>
+                After years of adventures together—from lazy Sunday mornings to spontaneous road trips—Tyler
+                proposed on a quiet evening in October 2026. It was perfectly us: simple, heartfelt, and
+                full of happy tears.
+            </p>
+            <p>
+                Now we can't wait to celebrate this next chapter with the people we love most.
+            </p>
+        </div>
+    </section>
+
+    <section id="events" class="events">
+        <p class="section-subtitle">Join Us</p>
+        <h2>Wedding Events</h2>
+        <div class="events-grid">
+            <div class="event-card">
+                <h3>Welcome Dinner</h3>
+                <p>The Ordinary</p>
+                <p>544 King Street</p>
+                <p>Charleston, SC</p>
+                <p class="event-time">Friday, June 13 • 7:00 PM</p>
+            </div>
+            <div class="event-card">
+                <h3>Ceremony</h3>
+                <p>Middleton Place</p>
+                <p>4300 Ashley River Road</p>
+                <p>Charleston, SC</p>
+                <p class="event-time">Saturday, June 14 • 4:30 PM</p>
+            </div>
+            <div class="event-card">
+                <h3>Reception</h3>
+                <p>Middleton Place</p>
+                <p>The Pavilion</p>
+                <p>Charleston, SC</p>
+                <p class="event-time">Saturday, June 14 • 6:00 PM</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="travel">
+        <p class="section-subtitle">Getting Here</p>
+        <h2>Travel & Accommodations</h2>
+        <div class="travel-info">
+            <div class="travel-card">
+                <h3>Where to Stay</h3>
+                <p>
+                    We've reserved a block of rooms at The Belmond Charleston Place for our guests.
+                    Please book by May 14, 2027 to receive the group rate.
+                </p>
+                <p>
+                    <a href="#">Book Your Room →</a>
+                </p>
+            </div>
+            <div class="travel-card">
+                <h3>Getting There</h3>
+                <p>
+                    The nearest airport is Charleston International Airport (CHS),
+                    approximately 20 minutes from downtown Charleston.
+                </p>
+                <p>
+                    Shuttle service will be provided from The Belmond Charleston Place
+                    to Middleton Place on the wedding day.
+                </p>
+            </div>
+            <div class="travel-card">
+                <h3>Things to Do</h3>
+                <p>
+                    Charleston offers beautiful historic sites, incredible restaurants,
+                    and lovely beaches. We recommend extending your stay to explore!
+                </p>
+                <p>
+                    <a href="#">Our Recommendations →</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="registry" class="registry">
+        <p class="section-subtitle">Gifts</p>
+        <h2>Registry</h2>
+        <p class="registry-message">
+            Your presence at our wedding is the greatest gift of all. For those who wish to
+            honor us with a gift, we've registered at the following places.
+        </p>
+        <div class="registry-links">
+            <a href="#" class="registry-btn">Zola</a>
+            <a href="#" class="registry-btn">Crate & Barrel</a>
+            <a href="#" class="registry-btn">Honeymoon Fund</a>
+        </div>
+    </section>
+
+    <section id="rsvp">
+        <p class="section-subtitle">Respond</p>
+        <h2>RSVP</h2>
+        <p class="rsvp-message">
+            Please respond by May 1, 2027 so we can finalize arrangements for the celebration.
+        </p>
+        <form class="rsvp-form">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="attendance">Will You Attend?</label>
+                <select id="attendance" name="attendance" required>
+                    <option value="">Select an option</option>
+                    <option value="yes">Joyfully Accept</option>
+                    <option value="no">Regretfully Decline</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="guests">Number of Guests</label>
+                <select id="guests" name="guests">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dietary">Dietary Restrictions</label>
+                <input type="text" id="dietary" name="dietary" placeholder="Please list any allergies or restrictions">
+            </div>
+            <div class="form-group">
+                <label for="message">Message for the Couple</label>
+                <textarea id="message" name="message" placeholder="Share your well wishes..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send RSVP</button>
+        </form>
+    </section>
+
+    <footer>
+        <h2>Grace & Tyler</h2>
+        <p>June 14, 2027 • Charleston, SC</p>
+    </footer>
+</body>
+</html>
