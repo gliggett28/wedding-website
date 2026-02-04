@@ -380,9 +380,119 @@
                 padding: 2rem 1.5rem;
             }
         }
+
+        /* Password Protection */
+        .password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, var(--sage-pale) 0%, var(--cream) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .password-overlay.hidden {
+            display: none;
+        }
+
+        .password-box {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .password-box h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .password-box .ampersand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-style: italic;
+            color: var(--sage);
+            margin: 0.5rem 0;
+        }
+
+        .password-box p {
+            color: var(--text-light);
+            margin: 2rem 0 1.5rem;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .password-input {
+            padding: 1rem 1.5rem;
+            border: 1px solid var(--sage-light);
+            background: var(--cream);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            text-align: center;
+            width: 250px;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: var(--sage-dark);
+        }
+
+        .password-input.error {
+            border-color: #c47a7a;
+            animation: shake 0.4s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+
+        .password-submit {
+            display: block;
+            width: 250px;
+            padding: 1rem;
+            background: var(--sage-dark);
+            color: var(--cream);
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .password-submit:hover {
+            background: var(--sage);
+        }
+
+        .site-content.hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
+    <!-- Password Protection Overlay -->
+    <div id="passwordOverlay" class="password-overlay">
+        <div class="password-box">
+            <h1>Grace</h1>
+            <p class="ampersand">&</p>
+            <h1>Tyler</h1>
+            <p>Please enter the password to view our wedding details</p>
+            <form id="passwordForm">
+                <input type="password" id="passwordInput" class="password-input" placeholder="Enter password" autocomplete="off">
+                <button type="submit" class="password-submit">Enter</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="siteContent" class="site-content hidden">
     <nav>
         <a href="#home">Home</a>
         <a href="#story">Our Story</a>
@@ -549,5 +659,40 @@
         <h2>Grace & Tyler</h2>
         <p>June 14, 2027 • Charleston, SC</p>
     </footer>
+    </div><!-- end site-content -->
+
+    <script>
+        (function() {
+            const PASSWORD = 'Bruno28';
+            const overlay = document.getElementById('passwordOverlay');
+            const siteContent = document.getElementById('siteContent');
+            const form = document.getElementById('passwordForm');
+            const input = document.getElementById('passwordInput');
+
+            // Check if already authenticated this session
+            if (sessionStorage.getItem('weddingAuth') === 'true') {
+                overlay.classList.add('hidden');
+                siteContent.classList.remove('hidden');
+            }
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                if (input.value === PASSWORD) {
+                    sessionStorage.setItem('weddingAuth', 'true');
+                    overlay.classList.add('hidden');
+                    siteContent.classList.remove('hidden');
+                } else {
+                    input.classList.add('error');
+                    input.value = '';
+                    input.placeholder = 'Incorrect password';
+                    setTimeout(() => {
+                        input.classList.remove('error');
+                        input.placeholder = 'Enter password';
+                    }, 1500);
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
