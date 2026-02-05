@@ -403,6 +403,10 @@
         .password-box {
             text-align: center;
             padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .password-box h1 {
@@ -426,6 +430,7 @@
         }
 
         .password-input {
+            display: block;
             padding: 1rem 1.5rem;
             border: 1px solid var(--sage-light);
             background: var(--cream);
@@ -433,7 +438,7 @@
             font-size: 1rem;
             text-align: center;
             width: 250px;
-            margin-bottom: 1rem;
+            margin: 0 auto 1rem auto;
             transition: border-color 0.3s ease;
         }
 
@@ -457,6 +462,7 @@
             display: block;
             width: 250px;
             padding: 1rem;
+            margin: 0 auto;
             background: var(--sage-dark);
             color: var(--cream);
             border: none;
@@ -495,7 +501,6 @@
     <div id="siteContent" class="site-content hidden">
     <nav>
         <a href="#home">Home</a>
-        <a href="#story">Our Story</a>
         <a href="#events">Events</a>
         <a href="#travel">Travel</a>
         <a href="#registry">Registry</a>
@@ -509,26 +514,6 @@
         <h1>Tyler</h1>
         <p class="hero-location">Charleston, South Carolina</p>
         <div class="scroll-indicator"></div>
-    </section>
-
-    <section id="story">
-        <p class="section-subtitle">Our Story</p>
-        <h2>How We Met</h2>
-        <div class="story-content">
-            <p>
-                We first crossed paths in the fall of 2021, though neither of us could have predicted
-                where that chance meeting would lead. What started as a simple conversation turned into
-                hours of talking, and those hours turned into a lifetime of memories waiting to be made.
-            </p>
-            <p>
-                After years of adventures together—from lazy Sunday mornings to spontaneous road trips—Tyler
-                proposed on a quiet evening in October 2026. It was perfectly us: simple, heartfelt, and
-                full of happy tears.
-            </p>
-            <p>
-                Now we can't wait to celebrate this next chapter with the people we love most.
-            </p>
-        </div>
     </section>
 
     <section id="events" class="events">
