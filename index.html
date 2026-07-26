@@ -9,10 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --sage-dark: #5C7C5C;
-            --sage: #7D9D7D;
-            --sage-light: #A8C5A8;
-            --sage-pale: #E8F0E8;
+            /* Wedding palette: sage #A1AC4E, dusty blue #ADBAC8,
+               pale cream #F6F8DB, golden #EEC474, dusty rose #E5A39D */
+            --sage-dark: #667030;
+            --sage: #A1AC4E;
+            --sage-light: #ADBAC8;
+            --sage-pale: #F6F8DB;
+            --gold: #EEC474;
+            --rose: #E5A39D;
             --cream: #FDFDF9;
             --text-dark: #3A3A3A;
             --text-light: #6B6B6B;
@@ -178,6 +182,7 @@
             padding: 3rem 2rem;
             text-align: center;
             border-radius: 2px;
+            border-top: 3px solid var(--gold);
         }
 
         .event-card h3 {
@@ -263,9 +268,9 @@
         }
 
         .registry-btn:hover {
-            background: var(--sage-dark);
-            color: var(--cream);
-            border-color: var(--sage-dark);
+            background: var(--rose);
+            color: var(--text-dark);
+            border-color: var(--rose);
         }
 
         /* RSVP */
@@ -338,7 +343,8 @@
         }
 
         .submit-btn:hover {
-            background: var(--sage);
+            background: var(--rose);
+            color: var(--text-dark);
         }
 
         /* Footer */
