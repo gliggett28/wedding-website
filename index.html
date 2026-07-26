@@ -69,10 +69,15 @@
             color: var(--sage-dark);
         }
 
+        nav a.active {
+            color: var(--sage-dark);
+            border-bottom: 1px solid var(--sage);
+            padding-bottom: 2px;
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
-            display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
@@ -111,21 +116,20 @@
             margin-top: 3rem;
         }
 
-        .scroll-indicator {
-            position: absolute;
-            bottom: 3rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 1px;
-            height: 60px;
-            background: linear-gradient(180deg, var(--sage) 0%, transparent 100%);
-        }
-
-        /* Sections */
+        /* Sections (tabs — one visible at a time) */
         section {
+            display: none;
             padding: 8rem 2rem;
             max-width: 900px;
             margin: 0 auto;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        section.hero.active {
+            display: flex;
         }
 
         section h2 {
@@ -513,7 +517,6 @@
         <p class="hero-ampersand">&</p>
         <h1>Tyler</h1>
         <p class="hero-location">Charleston, South Carolina</p>
-        <div class="scroll-indicator"></div>
     </section>
 
     <section id="events" class="events">
@@ -684,6 +687,22 @@
                     }, 1500);
                 }
             });
+        })();
+
+        // Tab navigation — show one section at a time
+        (function() {
+            const sections = document.querySelectorAll('#siteContent section');
+            const navLinks = document.querySelectorAll('nav a');
+
+            function showTab(id) {
+                const target = document.getElementById(id) ? id : 'home';
+                sections.forEach(s => s.classList.toggle('active', s.id === target));
+                navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + target));
+                window.scrollTo(0, 0);
+            }
+
+            window.addEventListener('hashchange', () => showTab(location.hash.slice(1)));
+            showTab(location.hash.slice(1) || 'home');
         })();
     </script>
 </body>
