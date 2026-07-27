@@ -703,11 +703,19 @@
 
     <script>
         (function() {
-            const PASSWORD = 'Bruno';
+            // Salted SHA-256 of the password — the password itself is not stored here
+            const PASSWORD_HASH = 'b4c5265ecd9f58843064376fe2cd3e9f755445f5d08d981087aece8bcfa880b3';
+            const SALT = 'graceandtyler2027:';
             const overlay = document.getElementById('passwordOverlay');
             const siteContent = document.getElementById('siteContent');
             const form = document.getElementById('passwordForm');
             const input = document.getElementById('passwordInput');
+
+            async function hashPassword(pw) {
+                const data = new TextEncoder().encode(SALT + pw);
+                const buf = await crypto.subtle.digest('SHA-256', data);
+                return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+            }
 
             // Check if already authenticated this session
             if (sessionStorage.getItem('weddingAuth') === 'true') {
@@ -715,10 +723,10 @@
                 siteContent.classList.remove('hidden');
             }
 
-            form.addEventListener('submit', function(e) {
+            form.addEventListener('submit', async function(e) {
                 e.preventDefault();
 
-                if (input.value === PASSWORD) {
+                if (await hashPassword(input.value) === PASSWORD_HASH) {
                     sessionStorage.setItem('weddingAuth', 'true');
                     overlay.classList.add('hidden');
                     siteContent.classList.remove('hidden');
