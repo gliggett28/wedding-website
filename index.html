@@ -711,6 +711,11 @@
             const form = document.getElementById('passwordForm');
             const input = document.getElementById('passwordInput');
 
+            // Web Crypto only exists on secure pages — send http visitors to https
+            if (!window.crypto || !crypto.subtle) {
+                location.replace('https://' + location.host + location.pathname + location.hash);
+            }
+
             async function hashPassword(pw) {
                 const data = new TextEncoder().encode(SALT + pw);
                 const buf = await crypto.subtle.digest('SHA-256', data);
