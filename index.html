@@ -457,6 +457,127 @@
             color: var(--text-dark);
         }
 
+        /* RSVP flow */
+        .rsvp-hidden {
+            display: none;
+        }
+
+        .rsvp-h {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.7rem;
+            font-weight: 400;
+            text-align: center;
+            color: var(--sage-dark);
+            margin-bottom: 1rem;
+        }
+
+        .rsvp-match {
+            display: block;
+            width: 100%;
+            padding: 1rem 1.5rem;
+            margin-bottom: 0.75rem;
+            background: var(--cream);
+            border: 1px solid var(--sage-light);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+            text-align: center;
+        }
+
+        .rsvp-match:hover {
+            border-color: var(--sage-dark);
+        }
+
+        .rsvp-match span {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        .rsvp-card {
+            background: var(--cream);
+            border: 1px solid var(--sage-pale);
+            border-top: 3px solid var(--gold);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .rsvp-card h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--sage-dark);
+            margin-bottom: 1rem;
+        }
+
+        .rsvp-q {
+            margin-bottom: 1.25rem;
+        }
+
+        .rsvp-q .q-label {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .rsvp-opts label {
+            margin-right: 1.5rem;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: inline-block;
+            margin-bottom: 0.25rem;
+        }
+
+        .rsvp-opts input {
+            margin-right: 0.4rem;
+            accent-color: var(--sage-dark);
+        }
+
+        .rsvp-summary {
+            background: var(--cream);
+            border: 1px solid var(--sage-pale);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .rsvp-summary h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--sage-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .rsvp-summary p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 0.35rem;
+        }
+
+        .rsvp-secondary {
+            background: none;
+            border: none;
+            color: var(--sage-dark);
+            text-decoration: underline;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            margin-top: 1.25rem;
+            display: inline-block;
+        }
+
+        .rsvp-error {
+            color: #a05252;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -767,45 +888,24 @@
     <section id="rsvp">
         <p class="section-subtitle">Respond</p>
         <h2>RSVP</h2>
-        <p class="rsvp-message">
-            Please respond by April 1, 2027 so we can finalize arrangements for the celebration.
-        </p>
-        <form class="rsvp-form" id="rsvpForm">
-            <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" required>
+        <div id="rsvpScreenLookup">
+            <h3 class="rsvp-h">Find your invitation</h3>
+            <p class="rsvp-message">
+                Enter your name below and we'll pull up what you're invited to. If you're responding
+                for a partner or guest, you'll be able to do that on the next screen.
+            </p>
+            <div class="rsvp-form">
+                <div class="form-group">
+                    <label for="rsvpName">Your first and last name</label>
+                    <input type="text" id="rsvpName" autocomplete="name" placeholder="Your first and last name">
+                </div>
+                <button type="button" class="submit-btn" id="rsvpFind">Find my invitation</button>
+                <div id="rsvpLookupResult"></div>
             </div>
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="attendance">Will You Attend?</label>
-                <select id="attendance" name="attendance" required>
-                    <option value="">Select an option</option>
-                    <option value="yes">Joyfully Accept</option>
-                    <option value="no">Regretfully Decline</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="guests">Number of Guests</label>
-                <select id="guests" name="guests">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="dietary">Dietary Restrictions</label>
-                <input type="text" id="dietary" name="dietary" placeholder="Please list any allergies or restrictions">
-            </div>
-            <div class="form-group">
-                <label for="message">Message for the Couple</label>
-                <textarea id="message" name="message" placeholder="Share your well wishes..."></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send RSVP</button>
-        </form>
+        </div>
+        <div id="rsvpScreenParty" class="rsvp-hidden"></div>
+        <div id="rsvpScreenConfirm" class="rsvp-hidden"></div>
+        <div id="rsvpScreenThanks" class="rsvp-hidden"></div>
     </section>
 
     <footer>
@@ -940,28 +1040,262 @@
             }, {passive: true});
         })();
 
-        // RSVP form — responses go to our Google Sheet
+        // RSVP — guest lookup, per-person event questions, responses to our Google Sheet
         (function() {
-            const form = document.getElementById('rsvpForm');
-            const RSVP_URL = 'https://script.google.com/macros/s/AKfycbzLS-2Q7lAs-6JnZfhUM5XovBh5UUI2cf3ACKBINRr4qFgMtMvVRbjarp8hSfMtTNhc/exec';
+            const API = 'https://script.google.com/macros/s/AKfycbzLS-2Q7lAs-6JnZfhUM5XovBh5UUI2cf3ACKBINRr4qFgMtMvVRbjarp8hSfMtTNhc/exec';
+            const $ = id => document.getElementById(id);
+            const screens = ['rsvpScreenLookup', 'rsvpScreenParty', 'rsvpScreenConfirm', 'rsvpScreenThanks'];
+            const state = { config: null, party: [], submittedBy: null, entries: [] };
 
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const btn = form.querySelector('.submit-btn');
+            function show(id) {
+                screens.forEach(s => $(s).classList.toggle('rsvp-hidden', s !== id));
+                document.getElementById('rsvp').scrollIntoView();
+            }
+
+            function esc(s) {
+                const d = document.createElement('div');
+                d.textContent = String(s == null ? '' : s);
+                return d.innerHTML;
+            }
+
+            function contactEmail() {
+                return (state.config && state.config.contactEmail) || 'gracie.liggett@gmail.com';
+            }
+
+            function deadlineText() {
+                const d = (state.config && state.config.deadline) || '2027-04-01';
+                const parts = d.split('-');
+                const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+                return months[Number(parts[1]) - 1] + ' ' + Number(parts[2]) + ', ' + parts[0];
+            }
+
+            function renderClosed() {
+                $('rsvpScreenLookup').innerHTML =
+                    '<h3 class="rsvp-h">RSVPs are now closed</h3>' +
+                    '<p class="rsvp-message">Our deadline has passed and we\'ve finalized numbers with our venues. ' +
+                    'If your plans have changed, please reach out directly at ' + esc(contactEmail()) + '.</p>';
+                show('rsvpScreenLookup');
+            }
+
+            function errorHtml(msg) {
+                return '<p class="rsvp-error">' + esc(msg || 'Something went wrong — your response didn\'t save. Please try again in a moment. If it keeps happening, email us at ' + contactEmail() + ' so we don\'t miss you.') + '</p>';
+            }
+
+            fetch(API).then(r => r.json()).then(d => {
+                state.config = d.config || null;
+                if (d.closed) renderClosed();
+            }).catch(() => {});
+
+            function doLookup() {
+                const name = $('rsvpName').value.trim();
+                const res = $('rsvpLookupResult');
+                if (!name) return;
+                const btn = $('rsvpFind');
+                btn.disabled = true;
+                btn.textContent = 'Looking…';
+                fetch(API + '?action=lookup&name=' + encodeURIComponent(name))
+                    .then(r => r.json())
+                    .then(d => {
+                        btn.disabled = false;
+                        btn.textContent = 'Find my invitation';
+                        if (d.closed) return renderClosed();
+                        if (!d.matches || !d.matches.length) {
+                            res.innerHTML =
+                                '<h3 class="rsvp-h" style="margin-top:2rem">We couldn\'t find that name</h3>' +
+                                '<p class="rsvp-message">Double-check the spelling, or try the name exactly as it appears on your invitation. ' +
+                                'Still stuck? Email us at ' + esc(contactEmail()) + ' and we\'ll sort it out.</p>';
+                            return;
+                        }
+                        if (d.matches.length === 1) return loadParty(d.matches[0].guest_id);
+                        res.innerHTML =
+                            '<h3 class="rsvp-h" style="margin-top:2rem">We found a few people</h3>' +
+                            '<p class="rsvp-message">Tap your name to continue.</p>' +
+                            d.matches.map(m =>
+                                '<button type="button" class="rsvp-match" data-gid="' + esc(m.guest_id) + '">' +
+                                esc(m.first_name + ' ' + m.last_name) +
+                                (m.hint ? ' <span>(' + esc(m.hint) + ')</span>' : '') +
+                                '</button>').join('');
+                        res.querySelectorAll('.rsvp-match').forEach(b =>
+                            b.addEventListener('click', () => loadParty(b.getAttribute('data-gid'))));
+                    })
+                    .catch(() => {
+                        btn.disabled = false;
+                        btn.textContent = 'Find my invitation';
+                        res.innerHTML = errorHtml('Something went wrong — please try again in a moment.');
+                    });
+            }
+
+            $('rsvpFind').addEventListener('click', doLookup);
+            $('rsvpName').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); doLookup(); } });
+
+            function loadParty(gid) {
+                state.submittedBy = gid;
+                fetch(API + '?action=party&guest_id=' + encodeURIComponent(gid))
+                    .then(r => r.json())
+                    .then(d => {
+                        if (d.closed) return renderClosed();
+                        if (d.error || !d.party) {
+                            $('rsvpLookupResult').innerHTML = errorHtml('Something went wrong — please try again in a moment.');
+                            return;
+                        }
+                        state.party = d.party;
+                        state.config = d.config;
+                        renderParty(d.lookup_name || d.party[0].first_name);
+                        show('rsvpScreenParty');
+                    })
+                    .catch(() => {
+                        $('rsvpLookupResult').innerHTML = errorHtml('Something went wrong — please try again in a moment.');
+                    });
+            }
+
+            function renderParty(firstName) {
+                const evs = state.config.events;
+                let html =
+                    '<h3 class="rsvp-h">You\'re invited, ' + esc(firstName) + '!</h3>' +
+                    '<p class="rsvp-message">Here\'s everyone in your party. Let us know who can make it — you can respond for everyone at once.</p>' +
+                    '<div class="rsvp-form" style="max-width:560px">';
+                state.party.forEach(p => {
+                    html += '<div class="rsvp-card"><h4>' + esc(p.first_name + ' ' + p.last_name) + '</h4>';
+                    evs.forEach(ev => {
+                        if (!p.invited[ev.key]) return;
+                        const ex = p.existing[ev.key] || {};
+                        const q = ev.key === 'wedding' ? 'Will you celebrate with us at the wedding?' : 'Will you join us for the rehearsal?';
+                        const rn = 'att_' + p.guest_id + '_' + ev.key;
+                        html +=
+                            '<div class="rsvp-q"><p class="q-label">' + esc(ev.label) + '</p>' +
+                            '<p style="margin-bottom:0.5rem">' + q + '</p>' +
+                            '<div class="rsvp-opts">' +
+                            '<label><input type="radio" name="' + rn + '" value="yes"' + (ex.attending === 'yes' ? ' checked' : '') + '> Joyfully accepts</label>' +
+                            '<label><input type="radio" name="' + rn + '" value="no"' + (ex.attending === 'no' ? ' checked' : '') + '> Regretfully declines</label>' +
+                            '</div></div>';
+                        if (ev.meal) {
+                            const mn = 'meal_' + p.guest_id;
+                            html +=
+                                '<div class="rsvp-q rsvp-meal-' + p.guest_id + (ex.attending === 'yes' ? '' : ' rsvp-hidden') + '">' +
+                                '<p class="q-label">Main course</p><div class="rsvp-opts">' +
+                                state.config.mealOptions.map(o =>
+                                    '<label><input type="radio" name="' + mn + '" value="' + esc(o) + '"' + (ex.meal_choice === o ? ' checked' : '') + '> ' + esc(o) + '</label>').join('') +
+                                '</div></div>';
+                        }
+                    });
+                    const anyYes = evs.some(ev => p.invited[ev.key] && (p.existing[ev.key] || {}).attending === 'yes');
+                    const dietVal = evs.map(ev => (p.existing[ev.key] || {}).dietary_restrictions || '').find(Boolean) || '';
+                    html +=
+                        '<div class="form-group rsvp-diet-' + p.guest_id + (anyYes ? '' : ' rsvp-hidden') + '">' +
+                        '<label for="diet_' + p.guest_id + '">Any allergies or dietary restrictions?</label>' +
+                        '<input type="text" id="diet_' + p.guest_id + '" value="' + esc(dietVal) + '" placeholder="Let us know so we can take care of you (optional)">' +
+                        '</div></div>';
+                });
+                html += '<div id="rsvpPartyError"></div>' +
+                    '<button type="button" class="submit-btn" id="rsvpContinue">Continue</button>' +
+                    '<button type="button" class="rsvp-secondary" id="rsvpBackToLookup">Look up a different name</button></div>';
+                $('rsvpScreenParty').innerHTML = html;
+
+                state.party.forEach(p => {
+                    $('rsvpScreenParty').querySelectorAll('input[name^="att_' + p.guest_id + '_"]').forEach(inp =>
+                        inp.addEventListener('change', () => {
+                            const wed = document.querySelector('input[name="att_' + p.guest_id + '_wedding"]:checked');
+                            const meal = document.querySelector('.rsvp-meal-' + p.guest_id);
+                            if (meal) meal.classList.toggle('rsvp-hidden', !(wed && wed.value === 'yes'));
+                            const anyYes = state.config.events.some(ev => {
+                                const c = document.querySelector('input[name="att_' + p.guest_id + '_' + ev.key + '"]:checked');
+                                return c && c.value === 'yes';
+                            });
+                            document.querySelector('.rsvp-diet-' + p.guest_id).classList.toggle('rsvp-hidden', !anyYes);
+                        }));
+                });
+                $('rsvpContinue').addEventListener('click', buildEntries);
+                $('rsvpBackToLookup').addEventListener('click', () => { $('rsvpLookupResult').innerHTML = ''; show('rsvpScreenLookup'); });
+            }
+
+            function buildEntries() {
+                const entries = [];
+                let missing = false;
+                state.party.forEach(p => {
+                    state.config.events.forEach(ev => {
+                        if (!p.invited[ev.key]) return;
+                        const att = document.querySelector('input[name="att_' + p.guest_id + '_' + ev.key + '"]:checked');
+                        if (!att) { missing = true; return; }
+                        let meal = '';
+                        if (ev.meal && att.value === 'yes') {
+                            const m = document.querySelector('input[name="meal_' + p.guest_id + '"]:checked');
+                            if (!m) { missing = true; return; }
+                            meal = m.value;
+                        }
+                        entries.push({
+                            guest_id: p.guest_id,
+                            event: ev.key,
+                            attending: att.value,
+                            meal_choice: meal,
+                            dietary_restrictions: att.value === 'yes' ? ($('diet_' + p.guest_id).value || '') : '',
+                            _name: p.first_name + ' ' + p.last_name,
+                            _label: ev.label
+                        });
+                    });
+                });
+                if (missing) {
+                    $('rsvpPartyError').innerHTML = '<p class="rsvp-error">Please answer every question (including main course for anyone attending the wedding) before continuing.</p>';
+                    return;
+                }
+                state.entries = entries;
+                renderConfirm();
+                show('rsvpScreenConfirm');
+            }
+
+            function renderConfirm() {
+                let html =
+                    '<h3 class="rsvp-h">Does this look right?</h3>' +
+                    '<p class="rsvp-message">Here\'s what we\'ve got. You can edit any time before ' + deadlineText() + '.</p>' +
+                    '<div class="rsvp-form" style="max-width:560px">';
+                state.party.forEach(p => {
+                    const mine = state.entries.filter(en => en.guest_id === p.guest_id);
+                    if (!mine.length) return;
+                    html += '<div class="rsvp-summary"><h4>' + esc(p.first_name + ' ' + p.last_name) + '</h4>';
+                    mine.forEach(en => {
+                        html += '<p><strong>' + esc(en._label) + ':</strong> ' + (en.attending === 'yes' ? 'Joyfully accepts' : 'Regretfully declines') +
+                            (en.meal_choice ? ' · ' + esc(en.meal_choice) : '') + '</p>';
+                    });
+                    const diet = (mine.find(en => en.dietary_restrictions) || {}).dietary_restrictions;
+                    if (diet) html += '<p><strong>Dietary:</strong> ' + esc(diet) + '</p>';
+                    html += '</div>';
+                });
+                html += '<div id="rsvpConfirmError"></div>' +
+                    '<button type="button" class="submit-btn" id="rsvpSubmit">Submit RSVP</button>' +
+                    '<button type="button" class="rsvp-secondary" id="rsvpEdit">Go back and edit</button></div>';
+                $('rsvpScreenConfirm').innerHTML = html;
+                $('rsvpEdit').addEventListener('click', () => show('rsvpScreenParty'));
+                $('rsvpSubmit').addEventListener('click', submitRsvp);
+            }
+
+            function submitRsvp() {
+                const btn = $('rsvpSubmit');
                 btn.disabled = true;
                 btn.textContent = 'Sending…';
-
-                fetch(RSVP_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    body: new URLSearchParams(new FormData(form))
-                }).then(function() {
-                    form.innerHTML = '<p class="rsvp-message">Thank you! Your RSVP has been received. We can\'t wait to celebrate with you.</p>';
-                }).catch(function() {
-                    btn.disabled = false;
-                    btn.textContent = 'Something went wrong — please try again';
-                });
-            });
+                const payload = {
+                    submitted_by: state.submittedBy,
+                    entries: state.entries.map(en => ({
+                        guest_id: en.guest_id, event: en.event, attending: en.attending,
+                        meal_choice: en.meal_choice, dietary_restrictions: en.dietary_restrictions
+                    }))
+                };
+                fetch(API, { method: 'POST', body: new URLSearchParams({ payload: JSON.stringify(payload) }) })
+                    .then(r => r.json())
+                    .then(d => {
+                        if (!d.ok) throw new Error(d.error || 'save failed');
+                        const allDeclined = state.entries.every(en => en.attending === 'no');
+                        $('rsvpScreenThanks').innerHTML = allDeclined
+                            ? '<h3 class="rsvp-h">Thank you for letting us know</h3>' +
+                              '<p class="rsvp-message">We\'re so sorry you can\'t make it, but thank you for responding. You\'ll be missed.</p>'
+                            : '<h3 class="rsvp-h">Thank you — we can\'t wait to celebrate with you!</h3>' +
+                              '<p class="rsvp-message">Your RSVP is in. Need to make a change? Just come back and look up your name again before ' + deadlineText() + '.</p>';
+                        show('rsvpScreenThanks');
+                    })
+                    .catch(() => {
+                        btn.disabled = false;
+                        btn.textContent = 'Try again';
+                        $('rsvpConfirmError').innerHTML = '<p class="rsvp-error">Something went wrong — your response didn\'t save. Please try again in a moment. If it keeps happening, email us at ' + esc(contactEmail()) + ' so we don\'t miss you.</p>';
+                    });
+            }
         })();
     </script>
 </body>
