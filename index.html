@@ -286,23 +286,22 @@
 
         /* Gallery */
         .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 0.75rem;
+            columns: 3 220px;
+            column-gap: 0.75rem;
             margin-top: 2rem;
         }
 
         .gallery-grid a {
             display: block;
-            aspect-ratio: 1;
+            margin-bottom: 0.75rem;
             overflow: hidden;
             border-radius: 2px;
+            break-inside: avoid;
         }
 
         .gallery-grid img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
             display: block;
             transition: transform 0.4s ease;
         }
@@ -673,23 +672,23 @@
         <p class="section-subtitle">Our Adventures</p>
         <h2>Gallery</h2>
         <div class="gallery-grid">
-            <a href="photos/DSCN7872.jpg" target="_blank" rel="noopener"><img src="photos/DSCN7872.jpg" alt="Grace and Tyler" loading="lazy"></a>
-            <a href="photos/IMG_0544.jpg" target="_blank" rel="noopener"><img src="photos/IMG_0544.jpg" alt="Grace and Tyler" loading="lazy"></a>
-            <a href="photos/IMG_0976.jpg" target="_blank" rel="noopener"><img src="photos/IMG_0976.jpg" alt="Grace and Tyler" loading="lazy"></a>
-            <a href="photos/IMG_1727.jpg" target="_blank" rel="noopener"><img src="photos/IMG_1727.jpg" alt="Grace and Tyler" loading="lazy"></a>
-            <a href="photos/IMG_1751.jpg" target="_blank" rel="noopener"><img src="photos/IMG_1751.jpg" alt="Grace and Tyler" loading="lazy"></a>
-            <a href="photos/IMG_1784.jpg" target="_blank" rel="noopener"><img src="photos/IMG_1784.jpg" alt="Grace and Tyler" loading="lazy"></a>
-            <a href="photos/IMG_2055.jpg" target="_blank" rel="noopener"><img src="photos/IMG_2055.jpg" alt="Grace and Tyler" loading="lazy"></a>
-            <a href="photos/IMG_2999.jpg" target="_blank" rel="noopener"><img src="photos/IMG_2999.jpg" alt="Grace and Tyler" loading="lazy"></a>
-            <a href="photos/IMG_3042.jpg" target="_blank" rel="noopener"><img src="photos/IMG_3042.jpg" alt="Grace and Tyler" loading="lazy"></a>
-            <a href="photos/IMG_3047.jpg" target="_blank" rel="noopener"><img src="photos/IMG_3047.jpg" alt="Grace and Tyler" loading="lazy"></a>
-            <a href="photos/IMG_5138.jpg" target="_blank" rel="noopener"><img src="photos/IMG_5138.jpg" alt="Grace and Tyler" loading="lazy"></a>
-            <a href="photos/IMG_5329.jpg" target="_blank" rel="noopener"><img src="photos/IMG_5329.jpg" alt="Grace and Tyler" loading="lazy"></a>
-            <a href="photos/IMG_6485.jpg" target="_blank" rel="noopener"><img src="photos/IMG_6485.jpg" alt="Grace and Tyler" loading="lazy"></a>
-            <a href="photos/IMG_7270.jpg" target="_blank" rel="noopener"><img src="photos/IMG_7270.jpg" alt="Grace and Tyler" loading="lazy"></a>
-            <a href="photos/IMG_7589.jpg" target="_blank" rel="noopener"><img src="photos/IMG_7589.jpg" alt="Grace and Tyler" loading="lazy"></a>
-            <a href="photos/IMG_8361.jpg" target="_blank" rel="noopener"><img src="photos/IMG_8361.jpg" alt="Grace and Tyler" loading="lazy"></a>
-            <a href="photos/IMG_9716.jpg" target="_blank" rel="noopener"><img src="photos/IMG_9716.jpg" alt="Grace and Tyler" loading="lazy"></a>
+            <a href="photos/DSCN7872.jpg" target="_blank" rel="noopener"><img src="photos/DSCN7872.jpg" alt="Grace and Tyler" width="2048" height="1536" loading="lazy"></a>
+            <a href="photos/IMG_0544.jpg" target="_blank" rel="noopener"><img src="photos/IMG_0544.jpg" alt="Grace and Tyler" width="2048" height="1536" loading="lazy"></a>
+            <a href="photos/IMG_0976.jpg" target="_blank" rel="noopener"><img src="photos/IMG_0976.jpg" alt="Grace and Tyler" width="1536" height="2048" loading="lazy"></a>
+            <a href="photos/IMG_1727.jpg" target="_blank" rel="noopener"><img src="photos/IMG_1727.jpg" alt="Grace and Tyler" width="1536" height="2150" loading="lazy"></a>
+            <a href="photos/IMG_1751.jpg" target="_blank" rel="noopener"><img src="photos/IMG_1751.jpg" alt="Grace and Tyler" width="1536" height="2304" loading="lazy"></a>
+            <a href="photos/IMG_1784.jpg" target="_blank" rel="noopener"><img src="photos/IMG_1784.jpg" alt="Grace and Tyler" width="1536" height="2304" loading="lazy"></a>
+            <a href="photos/IMG_2055.jpg" target="_blank" rel="noopener"><img src="photos/IMG_2055.jpg" alt="Grace and Tyler" width="1536" height="2048" loading="lazy"></a>
+            <a href="photos/IMG_2999.jpg" target="_blank" rel="noopener"><img src="photos/IMG_2999.jpg" alt="Grace and Tyler" width="1536" height="2048" loading="lazy"></a>
+            <a href="photos/IMG_3042.jpg" target="_blank" rel="noopener"><img src="photos/IMG_3042.jpg" alt="Grace and Tyler" width="2304" height="1536" loading="lazy"></a>
+            <a href="photos/IMG_3047.jpg" target="_blank" rel="noopener"><img src="photos/IMG_3047.jpg" alt="Grace and Tyler" width="2304" height="1536" loading="lazy"></a>
+            <a href="photos/IMG_5138.jpg" target="_blank" rel="noopener"><img src="photos/IMG_5138.jpg" alt="Grace and Tyler" width="2048" height="1536" loading="lazy"></a>
+            <a href="photos/IMG_5329.jpg" target="_blank" rel="noopener"><img src="photos/IMG_5329.jpg" alt="Grace and Tyler" width="1536" height="2048" loading="lazy"></a>
+            <a href="photos/IMG_6485.jpg" target="_blank" rel="noopener"><img src="photos/IMG_6485.jpg" alt="Grace and Tyler" width="1536" height="2316" loading="lazy"></a>
+            <a href="photos/IMG_7270.jpg" target="_blank" rel="noopener"><img src="photos/IMG_7270.jpg" alt="Grace and Tyler" width="1536" height="2048" loading="lazy"></a>
+            <a href="photos/IMG_7589.jpg" target="_blank" rel="noopener"><img src="photos/IMG_7589.jpg" alt="Grace and Tyler" width="2048" height="1536" loading="lazy"></a>
+            <a href="photos/IMG_8361.jpg" target="_blank" rel="noopener"><img src="photos/IMG_8361.jpg" alt="Grace and Tyler" width="2178" height="1444" loading="lazy"></a>
+            <a href="photos/IMG_9716.jpg" target="_blank" rel="noopener"><img src="photos/IMG_9716.jpg" alt="Grace and Tyler" width="1536" height="2048" loading="lazy"></a>
         </div>
     </section>
 
