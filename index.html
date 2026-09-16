@@ -354,6 +354,10 @@
             margin: 0 auto 14px;
         }
 
+        /* Group labels split a card grid into named runs (Restaurants / Activities). */
+        .group-label { margin-bottom: 18px; }
+        .events-grid + .group-label { margin-top: 44px; }
+
         section h2 { margin-bottom: 12px; }
         section h2 + .ornament { margin-top: 34px; }
         section h2 + .timeline,
@@ -937,8 +941,17 @@
            ========================================================================== */
 
         @media (max-width: 940px) {
-            .nav-toggle { display: block; }
+            /* The menu button sits in the top-right corner; the links drop
+               down beneath it across the full width. */
+            nav { display: flex; flex-wrap: wrap; justify-content: flex-end; }
+            .nav-toggle {
+                display: block;
+                width: auto;
+                margin: 0;
+                padding: 16px var(--gutter);
+            }
             .nav-links {
+                flex-basis: 100%;
                 display: none;
                 flex-direction: column;
                 align-items: center;
@@ -1160,6 +1173,7 @@
         <div class="ornament" aria-hidden="true">
             <span></span><img class="ornament-glyph ornament-glyph--monogram" src="stationery/monogram.png" alt="" aria-hidden="true"><span></span>
         </div>
+        <p class="section-subtitle group-label">Restaurants</p>
         <div class="events-grid">
             <div class="event-card">
                 <h3><a href="https://www.google.com/maps/search/?api=1&query=167+Raw+Oyster+Bar+193+King+Street+Charleston+SC" target="_blank" rel="noopener">167 Raw Oyster Bar</a></h3>
@@ -1186,6 +1200,19 @@
                 <p>2210 Middle Street</p>
                 <p>Sullivan's Island, SC 29482</p>
             </div>
+            <div class="event-card">
+                <h3><a href="https://www.google.com/maps/search/?api=1&query=The+Obstinate+Daughter+2063+Middle+Street+Sullivan's+Island+SC" target="_blank" rel="noopener">The Obstinate Daughter</a></h3>
+                <p>2063 Middle Street</p>
+                <p>Sullivan's Island, SC 29482</p>
+            </div>
+            <div class="event-card">
+                <h3><a href="https://www.google.com/maps/search/?api=1&query=Wild+Common+103+Spring+Street+Charleston+SC" target="_blank" rel="noopener">Wild Common</a></h3>
+                <p>103 Spring Street</p>
+                <p>Charleston, SC 29403</p>
+            </div>
+        </div>
+        <p class="section-subtitle group-label">Activities</p>
+        <div class="events-grid">
             <div class="event-card">
                 <h3><a href="https://www.google.com/maps/search/?api=1&query=Sullivan's+Island+Beach+Sullivan's+Island+SC" target="_blank" rel="noopener">Sullivan's Island Beach</a></h3>
                 <p>Sullivan's Island, SC 29482</p>
