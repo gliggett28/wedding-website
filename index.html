@@ -366,12 +366,25 @@
            ========================================================================== */
 
         .hero {
+            position: relative;
             max-width: none;
             padding: clamp(16px, 2.5vw, 24px) var(--gutter) clamp(20px, 3vw, 28px);
         }
+        /* The leaf-spray repeat from the invitation suite, laid behind the card
+           like patterned paper. Opacity is the one knob for how loud it is. */
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: url("stationery/leaf-tile.png") repeat center top / 220px auto;
+            opacity: .32;
+            pointer-events: none;
+        }
         .hero .std-frame {
+            position: relative;
             max-width: calc(var(--measure) + 120px);
             margin: 0 auto;
+            background: var(--cream);
         }
         .hero-date,
         .hero-location {
