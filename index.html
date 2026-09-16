@@ -151,8 +151,8 @@
             margin: 0 auto;
             height: auto;
         }
-        .monogram--hero { width: min(200px, 44vw); margin-bottom: 26px; }
-        .monogram--gate { width: 132px; margin-bottom: 18px; }
+        .monogram--hero { width: min(150px, 36vw); margin-bottom: 12px; }
+        .monogram--gate { width: 96px; margin-bottom: 8px; }
         .monogram--footer { width: 72px; margin: 0 auto 14px; opacity: .92; }
 
         /* The hero frame: a double hairline, as on the invitation card. */
@@ -167,7 +167,7 @@
             z-index: 1;
             background: var(--cream);
             border: 1px solid var(--terracotta-22);
-            padding: clamp(40px, 7vw, 84px) clamp(20px, 5vw, 56px);
+            padding: clamp(28px, 5vw, 44px) clamp(20px, 5vw, 56px);
             text-align: center;
         }
 
@@ -177,7 +177,7 @@
             margin: 0 auto;
             height: auto;
         }
-        .house--hero    { width: min(260px, 56vw); }
+        .house--hero    { width: min(190px, 46vw); }
         .house--section { width: 104px; opacity: .9; }
 
         /* --- 3. The rule --- */
@@ -227,17 +227,17 @@
             text-align: center;
             background: var(--cream);
             border: 1px solid var(--terracotta);
-            padding: clamp(36px, 7vw, 56px) clamp(24px, 5vw, 44px);
+            padding: clamp(24px, 5vw, 36px) clamp(24px, 5vw, 44px);
         }
-        .password-box h1 { font-size: clamp(40px, 8vw, 58px); }
+        .password-box h1 { font-size: clamp(36px, 6vw, 46px); }
         .password-box .ampersand {
             font-family: var(--font-script);
             font-style: normal;
-            font-size: 36px;
+            font-size: 28px;
             color: var(--terracotta-70);
             margin: 2px 0;
         }
-        .password-box form { margin-top: 32px; }
+        .password-box form { margin-top: 20px; }
 
         .password-input {
             width: 100%;
@@ -357,7 +357,7 @@
 
         .hero {
             max-width: none;
-            padding: clamp(28px, 5vw, 56px) var(--gutter) clamp(56px, 8vw, 96px);
+            padding: clamp(20px, 3vw, 32px) var(--gutter) clamp(32px, 5vw, 48px);
         }
         .hero .std-frame {
             max-width: calc(var(--measure) + 120px);
@@ -368,26 +368,26 @@
             color: var(--terracotta);
             margin: 0;
         }
-        .hero-date { margin-bottom: 26px; }
-        .hero h1 { line-height: 1.02; }
+        .hero-date { margin-bottom: 12px; }
+        .hero h1 { line-height: 1.02; font-size: clamp(48px, 8vw, 72px); }
         .hero-ampersand {
             font-family: var(--font-script);
             font-style: normal;
             font-weight: 400;
-            font-size: clamp(36px, 6vw, 54px);
+            font-size: clamp(30px, 5vw, 42px);
             color: var(--terracotta-70);
             margin: 2px 0;
         }
-        .hero .house { margin: 30px auto 26px; }
-        .hero-location { margin-top: 22px; }
+        .hero .house { margin: 16px auto 12px; }
+        .hero-location { margin-top: 12px; }
 
         .countdown {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 30px;
-            margin-top: 40px;
-            padding-top: 30px;
+            margin-top: 22px;
+            padding-top: 18px;
             border-top: 1px solid var(--terracotta-22);
         }
         .countdown-unit { min-width: 62px; }
@@ -402,50 +402,107 @@
         .countdown-label { color: var(--terracotta-70); font-size: 11px; }
 
         /* ==========================================================================
-           EVENTS — a centred timeline on a single hairline
+           EVENTS — a vertical spine; each event branches off it, alternating sides
            ========================================================================== */
 
         .timeline {
             position: relative;
-            max-width: 560px;
-            text-align: center;
+            max-width: 760px;
         }
         .timeline::before {
             content: "";
             position: absolute;
-            top: 6px;
-            bottom: 6px;
+            top: 10px;
+            bottom: 0;
             left: 50%;
             width: 1px;
-            background: var(--terracotta-22);
+            background: var(--terracotta-45);
         }
         .timeline-item {
             position: relative;
-            padding: 0 0 44px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 0 0 28px;
         }
         .timeline-item:last-child { padding-bottom: 0; }
-        .timeline-marker { position: relative; height: 13px; }
-        .timeline-dot {
+
+        /* The diamond sits on the spine where the branch leaves it. */
+        .timeline-marker {
             position: absolute;
             left: 50%;
-            top: 3px;
+            top: 10px;
+            width: 0;
+            height: 0;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -4px;
+            top: -4px;
             width: 7px;
             height: 7px;
-            margin-left: -4px;
             background: var(--cream);
             border: 1px solid var(--terracotta);
             transform: rotate(45deg);
         }
         .events .timeline-dot { background: var(--cream-deep); }
-        .timeline-body { padding-top: 14px; }
+
+        /* Even events sit right of the spine, odd events left. */
+        .timeline-body {
+            position: relative;
+            grid-column: 2;
+            padding-left: 44px;
+            text-align: left;
+        }
+        .timeline-body::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 0;
+            width: 30px;
+            height: 1px;
+            background: var(--terracotta-45);
+        }
+        .timeline-item:nth-child(odd) .timeline-body {
+            grid-column: 1;
+            padding-left: 0;
+            padding-right: 44px;
+            text-align: right;
+        }
+        .timeline-item:nth-child(odd) .timeline-body::before { left: auto; right: 0; }
+
         .timeline-time { color: var(--terracotta-70); margin: 0 0 6px; }
         .timeline-body h3 { margin-bottom: 6px; }
         .timeline-place { margin: 0; }
-        .timeline-place span { color: var(--terracotta-70); }
+        .timeline-place span { display: block; color: var(--terracotta-70); }
+        .timeline-dress { margin: 8px 0 0; }
+        .timeline-dress span {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: var(--track-caps);
+            color: var(--terracotta-70);
+            margin-bottom: 2px;
+        }
         .timeline-note {
             font-style: italic;
             color: var(--terracotta-70);
             margin-top: 4px;
+        }
+
+        /* Narrow screens: the spine moves to the left edge and every event hangs right. */
+        @media (max-width: 620px) {
+            .timeline::before { left: 4px; }
+            .timeline-item { grid-template-columns: 1fr; padding-bottom: 30px; }
+            .timeline-marker { left: 4px; }
+            .timeline-item .timeline-body,
+            .timeline-item:nth-child(odd) .timeline-body {
+                grid-column: 1;
+                padding-left: 34px;
+                padding-right: 0;
+                text-align: left;
+            }
+            .timeline-item:nth-child(odd) .timeline-body::before { left: 0; right: auto; }
+            .timeline-body::before { width: 22px; }
         }
 
         /* ==========================================================================
@@ -864,7 +921,6 @@
     </section>
 
     <section id="events" class="events">
-        <p class="section-subtitle">Join Us</p>
         <h2>Wedding Events</h2>
         <div class="timeline">
             <div class="timeline-item">
@@ -872,32 +928,36 @@
                 <div class="timeline-body">
                     <p class="timeline-time">Friday, April 23 • 8:00 PM</p>
                     <h3>Welcome Party</h3>
-                    <p class="timeline-place">Bay Street Biergarten <span>· 549 E Bay St, Charleston, SC</span></p>
+                    <p class="timeline-place">Bay Street Biergarten <span>549 E Bay St, Charleston, SC</span></p>
+                    <p class="timeline-dress"><span>Dress code</span> Summer Cocktail</p>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-marker"><span class="timeline-dot"></span></div>
                 <div class="timeline-body">
-                    <p class="timeline-time">Saturday, April 24 • 4:00 PM</p>
+                    <p class="timeline-time">Saturday, April 24 • 4:30 PM</p>
                     <h3>Ceremony</h3>
-                    <p class="timeline-place">St. Stephen's Episcopal Church <span>· 67 Anson St, Charleston, SC</span></p>
+                    <p class="timeline-place">St. Stephen's Episcopal Church <span>67 Anson St, Charleston, SC</span></p>
+                    <p class="timeline-dress"><span>Dress code</span> Garden Formal &mdash; suits with ties for men, full-length or tea-length dresses for women</p>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-marker"><span class="timeline-dot"></span></div>
                 <div class="timeline-body">
                     <p class="timeline-time">Saturday, April 24 • 5:00 PM</p>
-                    <h3>Reception</h3>
-                    <p class="timeline-place">The Gadsden House <span>· 329 E Bay St, Charleston, SC</span></p>
+                    <h3>Dinner and Dancing</h3>
+                    <p class="timeline-place">The Gadsden House <span>329 E Bay St, Charleston, SC</span></p>
+                    <p class="timeline-dress"><span>Dress code</span> Garden Formal</p>
                     <p class="timeline-note">Short walk from the church</p>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-marker"><span class="timeline-dot"></span></div>
                 <div class="timeline-body">
-                    <p class="timeline-time">Saturday, April 24 • 11:00 PM</p>
+                    <p class="timeline-time">Saturday, April 24 • 10:30 PM</p>
                     <h3>Afterparty</h3>
-                    <p class="timeline-place">The Brick <span>· 24 Ann St, Charleston, SC</span></p>
+                    <p class="timeline-place">The Brick <span>24 Ann St, Charleston, SC</span></p>
+                    <p class="timeline-dress"><span>Dress code</span> Garden Formal</p>
                     <p class="timeline-note">Transportation provided from the reception</p>
                 </div>
             </div>
@@ -906,7 +966,6 @@
 
     <section id="travel">
         <img class="house house--section section-motif" src="stationery/gadsden-house.png" alt="" aria-hidden="true">
-        <p class="section-subtitle">Getting Here</p>
         <h2>Travel & Accommodations</h2>
         <div class="travel-info">
             <div class="travel-card">
@@ -948,7 +1007,6 @@
     </section>
 
     <section id="activities" class="events activities">
-        <p class="section-subtitle">Explore Charleston</p>
         <h2>Activities</h2>
         <div class="ornament" aria-hidden="true">
             <span></span><img class="ornament-glyph" src="stationery/palmetto-terracotta.png" alt="" aria-hidden="true"><span></span>
@@ -1000,7 +1058,6 @@
     </section>
 
     <section id="registry" class="registry">
-        <p class="section-subtitle">Gifts</p>
         <h2>Registry</h2>
         <div class="ornament" aria-hidden="true">
             <span></span><img class="ornament-glyph" src="stationery/palmetto-terracotta.png" alt="" aria-hidden="true"><span></span>
@@ -1016,7 +1073,6 @@
     </section>
 
     <section id="rsvp">
-        <p class="section-subtitle">Respond</p>
         <h2>RSVP</h2>
         <div id="rsvpScreenLookup">
             <h3 class="rsvp-h">Find your invitation</h3>
@@ -1089,7 +1145,8 @@
             form.addEventListener('submit', async function(e) {
                 e.preventDefault();
 
-                if (await hashPassword(input.value) === PASSWORD_HASH) {
+                // Case-insensitive: the stored hash is of the lowercase password
+                if (await hashPassword(input.value.trim().toLowerCase()) === PASSWORD_HASH) {
                     sessionStorage.setItem('weddingAuth', 'true');
                     overlay.classList.add('hidden');
                     siteContent.classList.remove('hidden');
