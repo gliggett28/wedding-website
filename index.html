@@ -238,7 +238,14 @@
             border: 1px solid var(--terracotta);
             padding: clamp(24px, 5vw, 36px) clamp(24px, 5vw, 44px);
         }
-        .password-box h1 { font-size: clamp(36px, 6vw, 46px); }
+        /* The names are set whole in Paperwhisper, as on the save-the-date. */
+        .password-box h1 {
+            font-family: var(--font-script);
+            font-style: normal;
+            letter-spacing: 0;
+            font-size: clamp(52px, 9vw, 72px);
+            line-height: 1;
+        }
         .password-box .ampersand {
             font-family: var(--font-script);
             font-style: normal;
@@ -251,8 +258,11 @@
         .password-input {
             width: 100%;
             padding: 13px 16px;
-            font-family: var(--font-text);
-            font-size: 16px;
+            font-family: var(--font-display);
+            font-style: normal;
+            text-transform: uppercase;
+            letter-spacing: var(--track-caps);
+            font-size: 15px;
             color: var(--terracotta);
             background: var(--cream-deep);
             border: 1px solid var(--terracotta-45);
@@ -266,6 +276,8 @@
         .password-input.error::placeholder { color: var(--ink-soft); }
 
         .password-submit {
+            font-family: var(--font-display);
+            font-size: 15px;
             margin-top: 12px;
             width: 100%;
             padding: 13px 16px;
@@ -1274,7 +1286,7 @@
         // wrapped whole. Runs at load and again whenever the RSVP flow renders
         // new headings.
         (function() {
-            const HEADINGS = 'h1:not(.hero h1), h2, h3';
+            const HEADINGS = 'h1:not(.hero h1):not(.password-box h1), h2, h3';
             function wrap(el) {
                 if (el.dataset.wi) return;
                 el.dataset.wi = '1';
