@@ -4,13 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grace & Tyler | Wedding 2027</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Two faces only, both serifs. Cormorant Garamond italic is the engraved
-         display italic of the save-the-date; EB Garamond carries caps and body. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Two families, four faces, all self-hosted: The Antique Press (regular,
+         bold, outline) and Paperwhisper script, from the printed suite. -->
     <style>
         /* ==========================================================================
            GRACE & TYLER — visual identity ported from the printed save-the-date.
@@ -25,6 +20,7 @@
         @font-face { font-family: "The Antique Press"; src: url("fonts/TheAntiquePress.otf") format("opentype"); font-weight: 400; font-style: italic; font-display: swap; }
         @font-face { font-family: "The Antique Press"; src: url("fonts/TheAntiquePress-Bold.otf") format("opentype"); font-weight: 700; font-style: normal; font-display: swap; }
         @font-face { font-family: "The Antique Press"; src: url("fonts/TheAntiquePress-Bold.otf") format("opentype"); font-weight: 700; font-style: italic; font-display: swap; }
+        @font-face { font-family: "The Antique Press Outline"; src: url("fonts/TheAntiquePress-Outline.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
         @font-face { font-family: "Paperwhisper"; src: url("fonts/Paperwhisper.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
 
         :root {
@@ -43,7 +39,7 @@
             /* ---- Type ---- */
             --font-display: "The Antique Press", "Cormorant Garamond", Garamond, Georgia, serif;
             --font-script:  "Paperwhisper", "Cormorant Garamond", cursive;
-            --font-text:    "EB Garamond", Garamond, Georgia, serif;
+            --font-text:    "The Antique Press", Garamond, Georgia, serif;
             --track-display: 0.05em;
             --track-caps:    0.2em;
 
@@ -74,8 +70,9 @@
             background: var(--cream);
             color: var(--terracotta);
             font-family: var(--font-text);
-            font-size: 18px;
-            line-height: 1.7;
+            font-size: 16px;
+            line-height: 1.6;
+            letter-spacing: 0.02em;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -126,16 +123,16 @@
         .nav-links a,
         .form-group label,
         .q-label {
-            font-family: var(--font-text);
+            font-family: var(--font-display);
             font-style: normal;
             text-transform: uppercase;
             letter-spacing: var(--track-caps);
-            font-size: 13px;
-            font-weight: 500;
+            font-size: 12px;
+            font-weight: 700;
             line-height: 1.6;
         }
 
-        strong { font-weight: 600; }
+        strong { font-weight: 700; }
 
         /* ==========================================================================
            ORNAMENT — the three signature moves
@@ -218,6 +215,7 @@
             background: var(--terracotta-45);
         }
         .ornament-glyph { width: 23px; height: auto; flex: none; }
+        .ornament-glyph--monogram { width: 48px; }
 
         /* ==========================================================================
            PASSWORD GATE
@@ -366,18 +364,24 @@
            ========================================================================== */
 
         .hero {
-            position: relative;
-            max-width: none;
             padding: clamp(16px, 2.5vw, 24px) var(--gutter) clamp(20px, 3vw, 28px);
         }
-        /* The leaf-spray repeat from the invitation suite, laid behind the card
-           like patterned paper. Opacity is the one knob for how loud it is. */
-        .hero::before {
+        /* The leaf-spray repeat from the invitation suite, laid full-bleed behind
+           Home, Travel and Gallery like patterned paper. Opacity is the one knob
+           for how loud it is. */
+        .papered {
+            position: relative;
+            max-width: none;
+        }
+        .papered > * { position: relative; }
+        #travel.papered > * { max-width: var(--measure); }
+        #gallery.papered > * { max-width: 1100px; }
+        .papered::before {
             content: "";
             position: absolute;
             inset: 0;
             background: url("stationery/leaf-tile.png") repeat center top / 220px auto;
-            opacity: .32;
+            opacity: .12;
             pointer-events: none;
         }
         .hero .std-frame {
@@ -428,9 +432,9 @@
         .countdown-unit { min-width: 62px; }
         .countdown-value {
             display: block;
-            font-family: var(--font-display);
-            font-style: italic;
-            font-size: 34px;
+            font-family: "The Antique Press Outline", var(--font-display);
+            font-style: normal;
+            font-size: 36px;
             line-height: 1.1;
             color: var(--terracotta);
         }
@@ -554,6 +558,54 @@
             margin-top: 4px;
         }
 
+        /* Wedding Events set entirely in the suite's own faces: bold caps for the
+           day and time, outline for the venue, regular for the address and dress
+           code, Paperwhisper for the asides. */
+        #events .timeline-time {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-style: normal;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 12px;
+            color: var(--terracotta-70);
+            margin-bottom: 8px;
+        }
+        #events .timeline-place {
+            font-family: "The Antique Press Outline", var(--font-display);
+            font-size: clamp(20px, 2.4vw, 24px);
+            letter-spacing: 0.04em;
+            line-height: 1.2;
+            color: var(--terracotta);
+        }
+        #events .timeline-place span {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            margin-top: 5px;
+        }
+        #events .timeline-dress {
+            font-family: var(--font-display);
+            font-size: 15px;
+            letter-spacing: 0.03em;
+            line-height: 1.45;
+            margin-top: 10px;
+        }
+        #events .timeline-dress span {
+            font-family: var(--font-display);
+            font-weight: 700;
+        }
+        #events .timeline-note {
+            font-family: var(--font-script);
+            font-style: normal;
+            font-size: 22px;
+            line-height: 1.2;
+            color: var(--terracotta);
+            margin-top: 6px;
+        }
+
         /* Narrow screens: the spine moves to the left edge and every event hangs right. */
         @media (max-width: 620px) {
             .timeline::before { left: 4px; }
@@ -601,11 +653,31 @@
         .events .event-card { background: var(--cream); }
         .travel-card h3,
         .event-card h3 { margin-bottom: 12px; }
+        /* Travel card details drop to the lighter ink used for addresses on
+           the Events page; links and the room code stay full strength. */
+        .travel-card p { color: var(--terracotta-70); }
+        .travel-card p a,
+        .travel-card p strong { color: var(--terracotta); }
         .event-card p { margin: 0; }
         .event-card h3 a { text-decoration: none; }
         .event-card h3 a:hover { text-decoration: underline; }
+        /* The rentals aside sits in its own small card beneath the hotel blocks. */
         .travel-note {
-            font-style: italic;
+            font-family: var(--font-script);
+            font-style: normal;
+            font-size: clamp(24px, 3vw, 28px);
+            line-height: 1.35;
+            color: var(--terracotta);
+            background: var(--cream-deep);
+            border: 1px solid var(--terracotta-45);
+            padding: 22px 28px;
+            max-width: 560px;
+        }
+        .activities .event-card p {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            line-height: 1.8;
             color: var(--terracotta-70);
         }
         .travel-info + .travel-note { margin-top: 24px; }
@@ -621,7 +693,6 @@
            grid-auto-rows 1px, row-gap 0, spacing carried by each item's margin.
            ========================================================================== */
 
-        #gallery { max-width: 1100px; }
 
         .gallery-grid {
             --gallery-gap: 14px;
@@ -819,10 +890,11 @@
             border: 1px solid var(--terracotta-45);
             border-radius: 0;
             cursor: pointer;
-            font-family: var(--font-text);
+            font-family: var(--font-display);
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: var(--track-caps);
-            font-size: 13px;
+            font-size: 12px;
             min-height: 44px;
         }
         .rsvp-secondary:hover { border-color: var(--terracotta); }
@@ -979,7 +1051,7 @@
         </div>
     </nav>
 
-    <section id="home" class="hero">
+    <section id="home" class="hero papered">
         <div class="std-frame">
             <div class="std-panel">
                 <img class="house house--hero" src="stationery/gadsden-house.png" alt="" aria-hidden="true">
@@ -1039,7 +1111,7 @@
         </div>
     </section>
 
-    <section id="travel">
+    <section id="travel" class="papered">
         <img class="house house--section section-motif" src="stationery/gadsden-house.png" alt="" aria-hidden="true">
         <h2>Travel & Accommodations</h2>
         <div class="travel-info">
@@ -1084,7 +1156,7 @@
     <section id="activities" class="events activities">
         <h2>Things to Do</h2>
         <div class="ornament" aria-hidden="true">
-            <span></span><img class="ornament-glyph" src="stationery/palmetto-terracotta.png" alt="" aria-hidden="true"><span></span>
+            <span></span><img class="ornament-glyph ornament-glyph--monogram" src="stationery/monogram.png" alt="" aria-hidden="true"><span></span>
         </div>
         <div class="events-grid">
             <div class="event-card">
@@ -1124,7 +1196,7 @@
         </div>
     </section>
 
-    <section id="gallery">
+    <section id="gallery" class="papered">
         <div class="gallery-grid">
             <a href="photos/IMG_1727.jpg" target="_blank" rel="noopener"><img src="photos/thumbs/IMG_1727.jpg" alt="Grace and Tyler" width="1536" height="2150" loading="lazy"></a>
             <a href="photos/IMG_1751.jpg" target="_blank" rel="noopener"><img src="photos/thumbs/IMG_1751.jpg" alt="Grace and Tyler" width="1536" height="2304" loading="lazy"></a>
@@ -1149,7 +1221,7 @@
     <section id="registry" class="events registry">
         <h2>Registry</h2>
         <div class="ornament" aria-hidden="true">
-            <span></span><img class="ornament-glyph" src="stationery/palmetto-terracotta.png" alt="" aria-hidden="true"><span></span>
+            <span></span><img class="ornament-glyph ornament-glyph--monogram" src="stationery/monogram.png" alt="" aria-hidden="true"><span></span>
         </div>
         <p class="registry-message">
             Your presence at our wedding is the greatest gift of all. For those who wish to
