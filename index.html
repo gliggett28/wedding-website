@@ -151,8 +151,11 @@
             font-style: normal;
             font-size: 1.18em;
         }
-        /* Paperwhisper's T crossbar overhangs; tuck the next letters under it. */
+        /* Paperwhisper's T crossbar overhangs; tuck the next letters under it,
+           unless the next letter has an ascender (Things, The) that would
+           collide with the crossbar, in which case give it room instead. */
         .wi-t { margin-right: -0.04em; }
+        .wi-t-asc { margin-right: 0.1em; }
 
         /* --- 1. The monogram. Grace's hand-drawn G&T with the olive sprig,
                the crest of the suite. --- */
@@ -1283,7 +1286,8 @@
                     text.replace(/(^|\s)([A-Z]{2,}|[A-Z])/g, (m, sp, ch, i) => {
                         frag.appendChild(document.createTextNode(text.slice(last, i) + sp));
                         const span = document.createElement('span');
-                        span.className = 'wi' + (ch === 'T' ? ' wi-t' : '');
+                        const next = text.charAt(i + m.length);
+                        span.className = 'wi' + (ch === 'T' ? (/[bdfhklt]/.test(next) ? ' wi-t-asc' : ' wi-t') : '');
                         span.textContent = ch;
                         frag.appendChild(span);
                         last = i + m.length;
