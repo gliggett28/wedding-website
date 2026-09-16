@@ -243,16 +243,19 @@
             font-family: var(--font-script);
             font-style: normal;
             letter-spacing: 0;
-            font-size: clamp(52px, 9vw, 72px);
-            line-height: 1;
+            font-size: clamp(38px, 7.5vw, 58px);
+            line-height: 1.1;
+            white-space: nowrap;
+            margin-top: 6px;
         }
         .password-box .ampersand {
-            font-family: var(--font-script);
-            font-style: normal;
-            font-size: 28px;
+            font-size: .55em;
             color: var(--terracotta-70);
-            margin: 2px 0;
+            margin: 0 .08em;
+            vertical-align: .08em;
         }
+        /* Paperwhisper's T crossbar overhangs; pull "yler" in under it. */
+        .password-box .tuck-t { margin-right: -0.14em; }
         .password-box form { margin-top: 20px; }
 
         .password-input {
@@ -925,11 +928,9 @@
     <div id="passwordOverlay" class="password-overlay">
         <div class="password-box">
             <img class="monogram monogram--gate" src="stationery/monogram.png" alt="" aria-hidden="true">
-            <h1>Grace</h1>
-            <p class="ampersand">&</p>
-            <h1>Tyler</h1>
+            <h1>Grace <span class="ampersand">&amp;</span> <span class="tuck-t">T</span>yler</h1>
             <form id="passwordForm">
-                <input type="password" id="passwordInput" class="password-input" placeholder="Enter password" autocomplete="off">
+                <input type="password" id="passwordInput" class="password-input" placeholder="Password" autocomplete="off">
                 <button type="submit" class="password-submit">Enter</button>
             </form>
         </div>
