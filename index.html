@@ -65,6 +65,7 @@
 
         html { -webkit-text-size-adjust: 100%; }
 
+        html, body { overflow-x: clip; }
         body {
             margin: 0;
             background: var(--cream);
@@ -248,7 +249,7 @@
             font-style: normal;
             text-transform: uppercase;
             letter-spacing: var(--track-caps);
-            font-size: 15px;
+            font-size: 16px;   /* never below 16px: iOS zooms into smaller fields and stays zoomed */
             color: var(--terracotta);
             background: var(--cream-deep);
             border: 1px solid var(--terracotta-45);
@@ -628,6 +629,7 @@
                 padding: 12px 0 0 34px;
             }
             .timeline-art img { width: 130px; margin-top: 0; }
+            .timeline-time { white-space: normal; }
             .timeline-art img[src$="beers.png"] { width: 160px; }
         }
 
@@ -1027,7 +1029,7 @@
         <div class="password-box">
             <img class="monogram monogram--gate" src="stationery/monogram.png" alt="Grace &amp; Tyler">
             <form id="passwordForm">
-                <input type="password" id="passwordInput" class="password-input" placeholder="Password" autocomplete="off">
+                <input type="text" id="passwordInput" class="password-input" placeholder="Password" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" inputmode="text" aria-label="Password">
                 <button type="submit" class="password-submit">Enter</button>
             </form>
         </div>
@@ -1302,21 +1304,53 @@
                 siteContent.classList.remove('hidden');
             }
 
+            // Masking that behaves like a phone keyboard on every device: the
+            // letter just typed shows for a moment, then turns into a dot. The
+            // real value lives here; the field only ever shows the masked form.
+            const DOT = '•';
+            let real = '';
+            let shown = '';
+            let hideTimer = null;
+            function render(revealLast, caret) {
+                const n = real.length;
+                shown = revealLast && n ? DOT.repeat(n - 1) + real[n - 1] : DOT.repeat(n);
+                input.value = shown;
+                if (caret != null) input.setSelectionRange(caret, caret);
+            }
+            input.addEventListener('input', function() {
+                const now = input.value;
+                const caret = input.selectionStart;
+                let pre = 0;
+                while (pre < shown.length && pre < now.length && shown[pre] === now[pre]) pre++;
+                pre = Math.min(pre, caret);
+                let suf = 0;
+                while (suf < shown.length - pre && suf < now.length - pre &&
+                       shown[shown.length - 1 - suf] === now[now.length - 1 - suf]) suf++;
+                const inserted = now.slice(pre, now.length - suf);
+                real = real.slice(0, pre) + inserted + real.slice(real.length - suf);
+                clearTimeout(hideTimer);
+                const typedAtEnd = inserted.length > 0 && caret === now.length;
+                render(typedAtEnd, caret);
+                if (typedAtEnd) hideTimer = setTimeout(() => render(false, input.selectionStart), 900);
+            });
+            input.addEventListener('blur', () => { clearTimeout(hideTimer); render(false); });
+
             form.addEventListener('submit', async function(e) {
                 e.preventDefault();
+                clearTimeout(hideTimer);
 
                 // Case-insensitive: the stored hash is of the lowercase password
-                if (await hashPassword(input.value.trim().toLowerCase()) === PASSWORD_HASH) {
+                if (await hashPassword(real.trim().toLowerCase()) === PASSWORD_HASH) {
                     sessionStorage.setItem('weddingAuth', 'true');
                     overlay.classList.add('hidden');
                     siteContent.classList.remove('hidden');
                 } else {
                     input.classList.add('error');
-                    input.value = '';
+                    real = ''; render(false);
                     input.placeholder = 'Incorrect password';
                     setTimeout(() => {
                         input.classList.remove('error');
-                        input.placeholder = 'Enter password';
+                        input.placeholder = 'Password';
                     }, 1500);
                 }
             });
