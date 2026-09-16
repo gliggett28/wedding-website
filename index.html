@@ -161,7 +161,7 @@
             margin: 0 auto;
             height: auto;
         }
-        .monogram--gate { width: 96px; margin-bottom: 8px; }
+        .monogram--gate { width: clamp(150px, 40vw, 200px); margin-bottom: 6px; }
         .monogram--footer { width: 72px; margin: 0 auto 14px; opacity: .92; }
 
         /* The hero frame: a double hairline, as on the invitation card. */
@@ -238,24 +238,6 @@
             border: 1px solid var(--terracotta);
             padding: clamp(24px, 5vw, 36px) clamp(24px, 5vw, 44px);
         }
-        /* The names are set whole in Paperwhisper, as on the save-the-date. */
-        .password-box h1 {
-            font-family: var(--font-script);
-            font-style: normal;
-            letter-spacing: 0;
-            font-size: clamp(38px, 7.5vw, 58px);
-            line-height: 1.1;
-            white-space: nowrap;
-            margin-top: 6px;
-        }
-        .password-box .ampersand {
-            font-size: .55em;
-            color: var(--terracotta-70);
-            margin: 0 .08em;
-            vertical-align: .08em;
-        }
-        /* Paperwhisper's T crossbar overhangs; pull "yler" in under it. */
-        .password-box .tuck-t { margin-right: -0.14em; }
         .password-box form { margin-top: 20px; }
 
         .password-input {
@@ -927,8 +909,7 @@
     <!-- Password Protection Overlay -->
     <div id="passwordOverlay" class="password-overlay">
         <div class="password-box">
-            <img class="monogram monogram--gate" src="stationery/monogram.png" alt="" aria-hidden="true">
-            <h1>Grace <span class="ampersand">&amp;</span> <span class="tuck-t">T</span>yler</h1>
+            <img class="monogram monogram--gate" src="stationery/monogram.png" alt="Grace &amp; Tyler">
             <form id="passwordForm">
                 <input type="password" id="passwordInput" class="password-input" placeholder="Password" autocomplete="off">
                 <button type="submit" class="password-submit">Enter</button>
@@ -1287,7 +1268,7 @@
         // wrapped whole. Runs at load and again whenever the RSVP flow renders
         // new headings.
         (function() {
-            const HEADINGS = 'h1:not(.hero h1):not(.password-box h1), h2, h3';
+            const HEADINGS = 'h1:not(.hero h1), h2, h3';
             function wrap(el) {
                 if (el.dataset.wi) return;
                 el.dataset.wi = '1';
