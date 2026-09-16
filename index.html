@@ -144,6 +144,16 @@
 
         .svg-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 
+        /* Every capitalised word in a heading opens with a Paperwhisper initial,
+           as the names do. The spans are added by a small script at load. */
+        .wi {
+            font-family: var(--font-script);
+            font-style: normal;
+            font-size: 1.18em;
+        }
+        /* Paperwhisper's T crossbar overhangs; tuck the next letters under it. */
+        .wi-t { margin-right: -0.04em; }
+
         /* --- 1. The monogram. Grace's hand-drawn G&T with the olive sprig,
                the crest of the suite. --- */
         .monogram {
@@ -151,7 +161,6 @@
             margin: 0 auto;
             height: auto;
         }
-        .monogram--hero { width: min(150px, 36vw); margin-bottom: 12px; }
         .monogram--gate { width: 96px; margin-bottom: 8px; }
         .monogram--footer { width: 72px; margin: 0 auto 14px; opacity: .92; }
 
@@ -167,7 +176,7 @@
             z-index: 1;
             background: var(--cream);
             border: 1px solid var(--terracotta-22);
-            padding: clamp(28px, 5vw, 44px) clamp(20px, 5vw, 56px);
+            padding: clamp(20px, 3.5vw, 28px) clamp(20px, 5vw, 56px);
             text-align: center;
         }
 
@@ -177,7 +186,7 @@
             margin: 0 auto;
             height: auto;
         }
-        .house--hero    { width: min(190px, 46vw); }
+        .house--hero    { width: min(230px, 50vw); }
         .house--section { width: 104px; opacity: .9; }
 
         /* --- 3. The rule --- */
@@ -281,15 +290,16 @@
         }
 
         .nav-links {
-            max-width: var(--measure);
+            max-width: 960px;
             margin: 0 auto;
             padding: 16px var(--gutter);
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 4px 28px;
+            gap: 4px 24px;
         }
         .nav-links a {
+            white-space: nowrap;
             color: var(--terracotta);
             text-decoration: none;
             padding: 6px 0;
@@ -357,7 +367,7 @@
 
         .hero {
             max-width: none;
-            padding: clamp(20px, 3vw, 32px) var(--gutter) clamp(32px, 5vw, 48px);
+            padding: clamp(16px, 2.5vw, 24px) var(--gutter) clamp(20px, 3vw, 28px);
         }
         .hero .std-frame {
             max-width: calc(var(--measure) + 120px);
@@ -365,29 +375,41 @@
         }
         .hero-date,
         .hero-location {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: clamp(15px, 2vw, 19px);
             color: var(--terracotta);
             margin: 0;
         }
-        .hero-date { margin-bottom: 12px; }
-        .hero h1 { line-height: 1.02; font-size: clamp(48px, 8vw, 72px); }
-        .hero-ampersand {
+        .hero h1 {
+            font-family: var(--font-script);
+            font-style: normal;
+            line-height: 1.1;
+            font-size: clamp(48px, 10vw, 96px);
+            letter-spacing: 0.02em;
+        }
+        /* Paperwhisper's T carries a long crossbar flourish that the font counts
+           as width; pull the rest of the name back under it. */
+        .hero-cap-t { margin-right: -0.18em; }
+        .hero-amp {
             font-family: var(--font-script);
             font-style: normal;
             font-weight: 400;
-            font-size: clamp(30px, 5vw, 42px);
-            color: var(--terracotta-70);
-            margin: 2px 0;
+            font-size: 1.05em;
+            color: var(--terracotta);
+            margin: 0 0.04em;
         }
-        .hero .house { margin: 16px auto 12px; }
-        .hero-location { margin-top: 12px; }
+        .hero .house { margin: 0 auto 28px; }
+        .hero-date { margin-top: 24px; }
+        .hero-location { margin-top: 8px; }
 
         .countdown {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 30px;
-            margin-top: 22px;
-            padding-top: 18px;
+            margin-top: 16px;
+            padding-top: 14px;
             border-top: 1px solid var(--terracotta-22);
         }
         .countdown-unit { min-width: 62px; }
@@ -427,22 +449,25 @@
         .timeline-item:last-child { padding-bottom: 0; }
 
         /* The diamond sits on the spine where the branch leaves it. */
+        /* The marker's origin sits on the exact centre of the 1px spine and the
+           1px branch; the diamond is then centred on that origin. */
         .timeline-marker {
             position: absolute;
-            left: 50%;
-            top: 10px;
+            left: calc(50% + 1px);
+            top: 10.5px;
             width: 0;
             height: 0;
+            z-index: 2;
         }
         .timeline-dot {
             position: absolute;
-            left: -4px;
-            top: -4px;
-            width: 7px;
-            height: 7px;
+            left: 0;
+            top: 0;
+            width: 9px;
+            height: 9px;
             background: var(--cream);
             border: 1px solid var(--terracotta);
-            transform: rotate(45deg);
+            transform: translate(-50%, -50%) rotate(45deg);
         }
         .events .timeline-dot { background: var(--cream-deep); }
 
@@ -457,8 +482,8 @@
             content: "";
             position: absolute;
             top: 10px;
-            left: 0;
-            width: 30px;
+            left: 9px;
+            width: 24px;
             height: 1px;
             background: var(--terracotta-45);
         }
@@ -468,9 +493,17 @@
             padding-right: 44px;
             text-align: right;
         }
-        .timeline-item:nth-child(odd) .timeline-body::before { left: auto; right: 0; }
+        .timeline-item:nth-child(odd) .timeline-body::before { left: auto; right: 9px; }
 
-        .timeline-time { color: var(--terracotta-70); margin: 0 0 6px; }
+        .timeline-time {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: clamp(13px, 1.6vw, 15px);
+            letter-spacing: 0.12em;
+            white-space: nowrap;
+            color: var(--terracotta-70);
+            margin: 0 0 6px;
+        }
         .timeline-body h3 { margin-bottom: 6px; }
         .timeline-place { margin: 0; }
         .timeline-place span { display: block; color: var(--terracotta-70); }
@@ -493,7 +526,7 @@
         @media (max-width: 620px) {
             .timeline::before { left: 4px; }
             .timeline-item { grid-template-columns: 1fr; padding-bottom: 30px; }
-            .timeline-marker { left: 4px; }
+            .timeline-marker { left: 5px; }
             .timeline-item .timeline-body,
             .timeline-item:nth-child(odd) .timeline-body {
                 grid-column: 1;
@@ -501,8 +534,8 @@
                 padding-right: 0;
                 text-align: left;
             }
-            .timeline-item:nth-child(odd) .timeline-body::before { left: 0; right: auto; }
-            .timeline-body::before { width: 22px; }
+            .timeline-item:nth-child(odd) .timeline-body::before { left: 9px; right: auto; }
+            .timeline-body::before { width: 18px; }
         }
 
         /* ==========================================================================
@@ -763,11 +796,12 @@
             border-top: 1px solid var(--terracotta-22);
         }
         .footer-inner { padding: 40px var(--gutter) 36px; }
-        footer h2 { margin-bottom: 6px; }
         footer p {
+            font-family: var(--font-display);
+            font-style: italic;
             text-transform: uppercase;
             letter-spacing: var(--track-caps);
-            font-size: 12px;
+            font-size: 16px;
             color: var(--terracotta-70);
             margin: 0;
         }
@@ -898,22 +932,21 @@
             <a href="#home">Home</a>
             <a href="#events">Events</a>
             <a href="#travel">Travel</a>
-            <a href="#activities">Activities</a>
+            <a href="#activities">Things to Do</a>
             <a href="#gallery">Gallery</a>
             <a href="#registry">Registry</a>
-            <a href="#rsvp">RSVP</a>
+            <!-- RSVP opens later in the year, once the menu is set. Restore this link
+                 and remove data-disabled from the #rsvp section to switch it on. -->
+            <!-- <a href="#rsvp">RSVP</a> -->
         </div>
     </nav>
 
     <section id="home" class="hero">
         <div class="std-frame">
             <div class="std-panel">
-                <img class="monogram monogram--hero" src="stationery/monogram.png" alt="" aria-hidden="true">
-                <p class="hero-date">April 24, 2027</p>
-                <h1>Grace</h1>
-                <p class="hero-ampersand">&amp;</p>
-                <h1>Tyler</h1>
                 <img class="house house--hero" src="stationery/gadsden-house.png" alt="" aria-hidden="true">
+                <h1>Grace <span class="hero-amp">&amp;</span> <span class="hero-cap-t">T</span>yler</h1>
+                <p class="hero-date">April 24, 2027</p>
                 <p class="hero-location">Charleston, South Carolina</p>
                 <div class="countdown" id="countdown" aria-label="Time until the ceremony"></div>
             </div>
@@ -938,7 +971,7 @@
                     <p class="timeline-time">Saturday, April 24 • 4:30 PM</p>
                     <h3>Ceremony</h3>
                     <p class="timeline-place">St. Stephen's Episcopal Church <span>67 Anson St, Charleston, SC</span></p>
-                    <p class="timeline-dress"><span>Dress code</span> Garden Formal &mdash; suits with ties for men, full-length or tea-length dresses for women</p>
+                    <p class="timeline-dress"><span>Dress code</span> Garden Formal: suits with ties, full-length or tea-length dresses. Color encouraged.</p>
                 </div>
             </div>
             <div class="timeline-item">
@@ -1007,7 +1040,7 @@
     </section>
 
     <section id="activities" class="events activities">
-        <h2>Activities</h2>
+        <h2>Things to Do</h2>
         <div class="ornament" aria-hidden="true">
             <span></span><img class="ornament-glyph" src="stationery/palmetto-terracotta.png" alt="" aria-hidden="true"><span></span>
         </div>
@@ -1028,9 +1061,23 @@
                 <p>Charleston, SC 29401</p>
             </div>
             <div class="event-card">
+                <h3><a href="https://www.google.com/maps/search/?api=1&query=Ellis+Creek+Fish+Camp+1174+Folly+Road+Charleston+SC" target="_blank" rel="noopener">Ellis Creek Fish Camp</a></h3>
+                <p>1174 Folly Road</p>
+                <p>Charleston, SC 29412</p>
+            </div>
+            <div class="event-card">
                 <h3><a href="https://www.google.com/maps/search/?api=1&query=Poe's+Tavern+2210+Middle+Street+Sullivan's+Island+SC" target="_blank" rel="noopener">Poe's Tavern</a></h3>
                 <p>2210 Middle Street</p>
                 <p>Sullivan's Island, SC 29482</p>
+            </div>
+            <div class="event-card">
+                <h3><a href="https://www.google.com/maps/search/?api=1&query=Sullivan's+Island+Beach+Sullivan's+Island+SC" target="_blank" rel="noopener">Sullivan's Island Beach</a></h3>
+                <p>Sullivan's Island, SC 29482</p>
+            </div>
+            <div class="event-card">
+                <h3><a href="https://www.google.com/maps/search/?api=1&query=The+Battery+East+Battery+Charleston+SC" target="_blank" rel="noopener">Walk the Battery</a></h3>
+                <p>East Battery &amp; Murray Boulevard</p>
+                <p>Charleston, SC 29401</p>
             </div>
         </div>
     </section>
@@ -1072,7 +1119,7 @@
         </div>
     </section>
 
-    <section id="rsvp">
+    <section id="rsvp" data-disabled>
         <h2>RSVP</h2>
         <div id="rsvpScreenLookup">
             <h3 class="rsvp-h">Find your invitation</h3>
@@ -1100,7 +1147,6 @@
     <footer>
         <div class="footer-inner">
             <img class="monogram monogram--footer" src="stationery/monogram.png" alt="" aria-hidden="true">
-            <h2>Grace &amp; Tyler</h2>
             <p>April 24, 2027 &bull; Charleston, SC</p>
         </div>
     </footer>
@@ -1175,7 +1221,8 @@
             }
 
             function showTab(id) {
-                const target = document.getElementById(id) ? id : 'home';
+                const el = document.getElementById(id);
+                const target = (el && !el.hasAttribute('data-disabled')) ? id : 'home';
                 sections.forEach(s => s.classList.toggle('active', s.id === target));
                 navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + target));
                 closeMenu();
@@ -1222,13 +1269,50 @@
             setInterval(render, 60000);
         })();
 
+        // Script initials: wrap the capital that starts each word of a heading
+        // so it can be set in Paperwhisper. An all-caps word such as RSVP is
+        // wrapped whole. Runs at load and again whenever the RSVP flow renders
+        // new headings.
+        (function() {
+            const HEADINGS = 'h1:not(.hero h1), h2, h3';
+            function wrap(el) {
+                if (el.dataset.wi) return;
+                el.dataset.wi = '1';
+                const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+                const nodes = [];
+                while (walker.nextNode()) nodes.push(walker.currentNode);
+                nodes.forEach(node => {
+                    const text = node.nodeValue;
+                    if (!/(^|\s)[A-Z]/.test(text)) return;
+                    const frag = document.createDocumentFragment();
+                    let last = 0;
+                    text.replace(/(^|\s)([A-Z]{2,}|[A-Z])/g, (m, sp, ch, i) => {
+                        frag.appendChild(document.createTextNode(text.slice(last, i) + sp));
+                        const span = document.createElement('span');
+                        span.className = 'wi' + (ch === 'T' ? ' wi-t' : '');
+                        span.textContent = ch;
+                        frag.appendChild(span);
+                        last = i + m.length;
+                    });
+                    frag.appendChild(document.createTextNode(text.slice(last)));
+                    node.parentNode.replaceChild(frag, node);
+                });
+            }
+            function run(root) { (root || document).querySelectorAll(HEADINGS).forEach(wrap); }
+            run();
+            new MutationObserver(muts => muts.forEach(m => m.addedNodes.forEach(n => {
+                if (n.nodeType !== 1) return;
+                if (n.matches && n.matches(HEADINGS)) wrap(n); else run(n);
+            }))).observe(document.body, { childList: true, subtree: true });
+        })();
+
         // Scroll reveals. Targets are chosen to avoid anything that already owns
         // its transform or transition: the hero motifs are mirrored with scaleX,
         // and the cards and gallery tiles animate on hover — revealing those would
         // fight for the same properties. Containers are revealed instead.
         (function() {
             const SELECTOR = [
-                '.monogram--hero', '.hero-date', '.hero h1', '.hero-ampersand', '.hero-location', '.countdown',
+                '.hero h1', '.hero-date', '.hero-location', '.countdown',
                 '#siteContent section h2', '.section-subtitle', '.section-motif', '.ornament',
                 '.timeline-item', '.events-grid', '.travel-card',
                 '.registry-message', '.registry-links', '#rsvpScreenLookup'
