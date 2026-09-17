@@ -6,6 +6,8 @@
     <title>Grace & Tyler | Wedding 2027</title>
     <!-- Two families, four faces, all self-hosted: The Antique Press (regular,
          bold, outline) and Paperwhisper script, from the printed suite. -->
+    <link rel="preload" href="fonts/TheAntiquePress.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/Paperwhisper.woff2" as="font" type="font/woff2" crossorigin>
     <style>
         /* ==========================================================================
            GRACE & TYLER — visual identity ported from the printed save-the-date.
@@ -16,12 +18,16 @@
         /* The Antique Press (display) and Paperwhisper (script) from the
            Rustic Serif Duo. The display face is a single italic cut, so it is
            registered under both styles to stop the browser adding a fake slant. */
-        @font-face { font-family: "The Antique Press"; src: url("fonts/TheAntiquePress.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
-        @font-face { font-family: "The Antique Press"; src: url("fonts/TheAntiquePress.otf") format("opentype"); font-weight: 400; font-style: italic; font-display: swap; }
-        @font-face { font-family: "The Antique Press"; src: url("fonts/TheAntiquePress-Bold.otf") format("opentype"); font-weight: 700; font-style: normal; font-display: swap; }
-        @font-face { font-family: "The Antique Press"; src: url("fonts/TheAntiquePress-Bold.otf") format("opentype"); font-weight: 700; font-style: italic; font-display: swap; }
-        @font-face { font-family: "The Antique Press Outline"; src: url("fonts/TheAntiquePress-Outline.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
-        @font-face { font-family: "Paperwhisper"; src: url("fonts/Paperwhisper.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+        /* WOFF2 first, then WOFF, with the original OTF last. iOS Safari is
+           unreliable about raw OTF/CFF webfonts, which left half the page in
+           Georgia and Snell Roundhand on iPhones; the woff2 cuts the four
+           faces from 748KB to 256KB into the bargain. */
+        @font-face { font-family: "The Antique Press"; src: url("fonts/TheAntiquePress.woff2") format("woff2"), url("fonts/TheAntiquePress.woff") format("woff"), url("fonts/TheAntiquePress.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+        @font-face { font-family: "The Antique Press"; src: url("fonts/TheAntiquePress.woff2") format("woff2"), url("fonts/TheAntiquePress.woff") format("woff"), url("fonts/TheAntiquePress.otf") format("opentype"); font-weight: 400; font-style: italic; font-display: swap; }
+        @font-face { font-family: "The Antique Press"; src: url("fonts/TheAntiquePress-Bold.woff2") format("woff2"), url("fonts/TheAntiquePress-Bold.woff") format("woff"), url("fonts/TheAntiquePress-Bold.otf") format("opentype"); font-weight: 700; font-style: normal; font-display: swap; }
+        @font-face { font-family: "The Antique Press"; src: url("fonts/TheAntiquePress-Bold.woff2") format("woff2"), url("fonts/TheAntiquePress-Bold.woff") format("woff"), url("fonts/TheAntiquePress-Bold.otf") format("opentype"); font-weight: 700; font-style: italic; font-display: swap; }
+        @font-face { font-family: "The Antique Press Outline"; src: url("fonts/TheAntiquePress-Outline.woff2") format("woff2"), url("fonts/TheAntiquePress-Outline.woff") format("woff"), url("fonts/TheAntiquePress-Outline.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+        @font-face { font-family: "Paperwhisper"; src: url("fonts/Paperwhisper.woff2") format("woff2"), url("fonts/Paperwhisper.woff") format("woff"), url("fonts/Paperwhisper.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
 
         :root {
             /* ---- The whole palette. Terracotta on cream, nothing else. ---- */
@@ -1257,8 +1263,8 @@
             honor us with a gift, we've registered at the following places.
         </p>
         <div class="registry-links">
-            <a href="https://www.crateandbarrel.com/gift-registry/grace-liggett-and-tyler-koch/r7601357" target="_blank" rel="noopener" class="registry-btn">Crate & Barrel</a>
             <a href="https://www.heathceramics.com/apps/registry/g-t-wedding-registry" target="_blank" rel="noopener" class="registry-btn">Heath Ceramics</a>
+            <a href="https://www.crateandbarrel.com/gift-registry/grace-liggett-and-tyler-koch/r7601357" target="_blank" rel="noopener" class="registry-btn">Crate & Barrel</a>
             <a href="https://www.honeyfund.com/site/liggett-koch-04-24-2027" target="_blank" rel="noopener" class="registry-btn">Honeymoon Fund</a>
         </div>
     </section>
