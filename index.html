@@ -1066,9 +1066,10 @@
             <a href="#activities">Things to Do</a>
             <a href="#gallery">Gallery</a>
             <a href="#registry">Registry</a>
-            <!-- RSVP opens later in the year, once the menu is set. Restore this link
-                 and remove data-disabled from the #rsvp section to switch it on. -->
-            <!-- <a href="#rsvp">RSVP</a> -->
+            <!-- Until formal RSVPs open, RSVP points at the #rsvp-early note. To open the
+                 full form: point this link at #rsvp, remove data-disabled from #rsvp,
+                 and add data-disabled to #rsvp-early. -->
+            <a href="#rsvp-early">RSVP</a>
         </div>
     </nav>
 
@@ -1268,6 +1269,18 @@
             <a href="https://www.crateandbarrel.com/gift-registry/grace-liggett-and-tyler-koch/r7601357" target="_blank" rel="noopener" class="registry-btn">Crate & Barrel</a>
             <a href="https://www.honeyfund.com/site/liggett-koch-04-24-2027" target="_blank" rel="noopener" class="registry-btn">Honeymoon Fund</a>
         </div>
+    </section>
+
+    <section id="rsvp-early" class="events registry">
+        <h2>RSVP</h2>
+        <div class="ornament" aria-hidden="true">
+            <span></span><img class="ornament-glyph ornament-glyph--monogram" src="stationery/monogram.png" alt="" aria-hidden="true"><span></span>
+        </div>
+        <p class="registry-message">
+            We aren't asking for formal RSVPs just yet. Invitations will follow closer to the date.
+            In the meantime, if you already know you won't be able to make it, we'd be grateful
+            if you'd let us know so we can plan.
+        </p>
     </section>
 
     <section id="rsvp" data-disabled>
