@@ -803,6 +803,20 @@
             color: var(--cream);
         }
 
+        /* The weekend map: every venue and recommendation, by layer. */
+        .map-embed {
+            border: 1px solid var(--terracotta-45);
+            margin: 0 auto 18px;
+            max-width: 900px;
+        }
+        .map-embed iframe {
+            display: block;
+            width: 100%;
+            height: clamp(320px, 60vh, 480px);
+            border: 0;
+        }
+        .map-embed + .registry-links { margin-bottom: 44px; }
+
         /* ==========================================================================
            RSVP — the one filled control on the site
            ========================================================================== */
@@ -1184,6 +1198,12 @@
         <h2>Things to Do</h2>
         <div class="ornament" aria-hidden="true">
             <span></span><img class="ornament-glyph ornament-glyph--monogram" src="stationery/monogram.png" alt="" aria-hidden="true"><span></span>
+        </div>
+        <div class="map-embed">
+            <iframe src="https://www.google.com/maps/d/embed?mid=1Sty8BuCJxTLbUBdq_SRwh8EFWHYoGl8" title="Map of wedding venues and Charleston recommendations" loading="lazy"></iframe>
+        </div>
+        <div class="registry-links">
+            <a href="https://www.google.com/maps/d/viewer?mid=1Sty8BuCJxTLbUBdq_SRwh8EFWHYoGl8" target="_blank" rel="noopener" class="registry-btn">Open the Map on Your Phone</a>
         </div>
         <p class="section-subtitle group-label">Restaurants</p>
         <div class="events-grid">
