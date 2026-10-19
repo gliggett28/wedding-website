@@ -813,18 +813,11 @@
             border: 1px solid var(--terracotta-45);
             padding: 14px;
         }
-        .map-crop {
-            overflow: hidden;
-            height: clamp(360px, 65vh, 540px);
-            border: 1px solid var(--terracotta-22);
-        }
-        /* Google's grey title bar is about 60px tall; pull it up out of view. */
         .map-embed iframe {
             display: block;
             width: 100%;
-            height: calc(clamp(360px, 65vh, 540px) + 60px);
-            margin-top: -60px;
-            border: 0;
+            height: clamp(320px, 60vh, 480px);
+            border: 1px solid var(--terracotta-22);
             filter: sepia(0.18) saturate(0.85);
         }
         .map-embed + .registry-links { margin-bottom: 44px; }
@@ -1212,9 +1205,9 @@
             <span></span><img class="ornament-glyph ornament-glyph--monogram" src="stationery/monogram.png" alt="" aria-hidden="true"><span></span>
         </div>
         <div class="map-embed">
-            <div class="map-crop"><iframe src="https://www.google.com/maps/d/embed?mid=1Sty8BuCJxTLbUBdq_SRwh8EFWHYoGl8" title="Map of wedding venues and Charleston recommendations" loading="lazy"></iframe></div>        </div>
+            <iframe src="https://www.google.com/maps/d/embed?mid=1Sty8BuCJxTLbUBdq_SRwh8EFWHYoGl8" title="Map of wedding venues and Charleston recommendations" loading="lazy"></iframe>        </div>
         <div class="registry-links">
-            <a href="https://www.google.com/maps/d/viewer?mid=1Sty8BuCJxTLbUBdq_SRwh8EFWHYoGl8" target="_blank" rel="noopener" class="registry-btn">Open the Map on Your Phone</a>
+            <a href="https://www.google.com/maps/d/viewer?mid=1Sty8BuCJxTLbUBdq_SRwh8EFWHYoGl8" target="_blank" rel="noopener" class="registry-btn">Open the Map</a>
         </div>
         <p class="section-subtitle group-label">Breakfast &amp; Coffee</p>
         <div class="events-grid">
