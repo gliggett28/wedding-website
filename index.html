@@ -804,14 +804,14 @@
         }
 
         /* The weekend map, mounted like the gallery prints: a cream matte inside
-           a terracotta rule, with a script caption. A light warm tint takes the
-           stock-Google blue off without moving the pin colours much. */
+           a terracotta rule. A light warm tint takes the stock-Google blue off
+           without moving the pin colours much. */
         .map-embed {
             margin: 0 auto 18px;
             max-width: 900px;
             background: var(--cream-deep);
             border: 1px solid var(--terracotta-45);
-            padding: 14px 14px 10px;
+            padding: 14px;
         }
         .map-embed iframe {
             display: block;
@@ -819,14 +819,6 @@
             height: clamp(320px, 60vh, 480px);
             border: 1px solid var(--terracotta-22);
             filter: sepia(0.18) saturate(0.85);
-        }
-        .map-caption {
-            font-family: var(--font-script);
-            font-size: clamp(24px, 3vw, 28px);
-            line-height: 1.2;
-            color: var(--terracotta);
-            text-align: center;
-            margin: 10px 0 0;
         }
         .map-embed + .registry-links { margin-bottom: 44px; }
 
@@ -1213,9 +1205,7 @@
             <span></span><img class="ornament-glyph ornament-glyph--monogram" src="stationery/monogram.png" alt="" aria-hidden="true"><span></span>
         </div>
         <div class="map-embed">
-            <iframe src="https://www.google.com/maps/d/embed?mid=1Sty8BuCJxTLbUBdq_SRwh8EFWHYoGl8" title="Map of wedding venues and Charleston recommendations" loading="lazy"></iframe>
-            <p class="map-caption">The Weekend Map</p>
-        </div>
+            <iframe src="https://www.google.com/maps/d/embed?mid=1Sty8BuCJxTLbUBdq_SRwh8EFWHYoGl8" title="Map of wedding venues and Charleston recommendations" loading="lazy"></iframe>        </div>
         <div class="registry-links">
             <a href="https://www.google.com/maps/d/viewer?mid=1Sty8BuCJxTLbUBdq_SRwh8EFWHYoGl8" target="_blank" rel="noopener" class="registry-btn">Open the Map on Your Phone</a>
         </div>
