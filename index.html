@@ -1014,6 +1014,26 @@
             disable_session_recording: true,
             enable_heatmaps: true
         });
+        // One named event per link click, labelled for the PostHog dashboard.
+        document.addEventListener('click', function(e) {
+            var a = e.target.closest && e.target.closest('a');
+            if (!a) return;
+            var href = a.getAttribute('href') || '';
+            var sec = a.closest('section');
+            var section = a.closest('nav') ? 'nav' : (sec ? sec.id : 'other');
+            var img = a.querySelector('img');
+            var label = (a.textContent || '').replace(/\s+/g, ' ').replace('→', '').trim() ||
+                        (img ? href.split('/').pop() : href);
+            var kind = section === 'nav' ? 'nav'
+                : /travelclick/.test(href) ? 'hotel'
+                : /airbnb|vrbo/.test(href) ? 'rental'
+                : section === 'registry' ? 'registry'
+                : /maps\/d\//.test(href) ? 'map'
+                : section === 'activities' ? 'activity'
+                : section === 'gallery' ? 'photo'
+                : 'other';
+            posthog.capture('link_clicked', { label: label, kind: kind, section: section, href: href });
+        }, true);
     </script>
 </head>
 <body>
