@@ -703,10 +703,11 @@
             color: var(--terracotta-70);
         }
         .travel-info + .travel-note { margin-top: 24px; }
-        /* Two cards: 'Getting There' and the Francis Marion block sit side by side. */
+        /* Three cards: 'Getting There' spans the top, the two room blocks pair below. */
         #travel .travel-info { grid-template-columns: 1fr; }
         @media (min-width: 620px) {
             #travel .travel-info { grid-template-columns: 1fr 1fr; }
+            #travel .travel-info > :first-child { grid-column: 1 / -1; }
         }
 
         /* ==========================================================================
@@ -1031,7 +1032,7 @@
             var label = (a.textContent || '').replace(/\s+/g, ' ').replace('→', '').trim() ||
                         (img ? href.split('/').pop() : href);
             var kind = section === 'nav' ? 'nav'
-                : /travelclick/.test(href) ? 'hotel'
+                : /travelclick|marriott/.test(href) ? 'hotel'
                 : /airbnb|vrbo/.test(href) ? 'rental'
                 : section === 'registry' ? 'registry'
                 : /maps\/d\//.test(href) ? 'map'
@@ -1224,6 +1225,16 @@
                     <a href="https://reservations.travelclick.com/76320?groupID=5170442" target="_blank" rel="noopener">Book Your Room →</a>
                 </p>
                 -->
+            </div>
+            <div class="travel-card">
+                <h3>Hotel Operis</h3>
+                <p>
+                    We have reserved a block at Hotel Operis.
+                    Please book by March 9, 2027 to receive the group rate.
+                </p>
+                <p>
+                    <a href="https://www.marriott.com/event-reservations/reservation-link.mi?id=1788468055360&amp;key=GRP&amp;app=resvlink" target="_blank" rel="noopener">Book Your Room →</a>
+                </p>
             </div>
         </div>
         <p class="travel-note">
